@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/home_menu"
+        android:title="@string/home"
+        android:icon="@drawable/ic_home_black_24dp"/>
+
+    <item
+        android:id="@+id/suratmasuk_menu"
+        android:title="@string/suratmasuk"
+        android:icon="@drawable/ic_email_black_24dp"/>
+
+    <item
+        android:id="@+id/disposisimasuk_menu"
+        android:title="@string/disposisimasuk"
+        android:icon="@drawable/ic_mail_outline_black_24dp"/>
+    <item
+        android:id="@+id/disposisikeluar_menu"
+        android:title="@string/disposisikeluar"
+        android:icon="@drawable/ic_present_to_all_black_24dp"/>
+    <item
+        android:id="@+id/personal_menu"
+        android:title="@string/personal"
+        android:icon="@drawable/ic_account_box_black_24dp"/>
+</menu>

@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">SiMPELv</string>
+
+    <string name="home">Home</string>
+    <string name="suratmasuk">Surat Masuk</string>
+    <string name="disposisimasuk">Disposisi Masuk</string>
+    <string name="disposisikeluar">Disposisi Keluar</string>
+    <string name="personal">Personal</string>
+    <string name="next">LANJUT</string>
+    <string name="skip">LEWATI</string>
+    <string name="start">MULAI</string>
+
+
+    <string name="slide_1_title">CEPAT</string>
+    <string name="slide_1_desc">Rasakan Pengiriman Surat Dengan Sangat Cepat dan Struktural</string>
+
+    <string name="slide_2_title">EFEKTIFITAS</string>
+    <string name="slide_2_desc">Dapat Digunakan Dimanapun Dengan Menggunakan Koneksi Internet</string>
+
+
+    <string name="slide_4_title">GO GREEN OFFICE</string>
+    <string name="slide_4_desc">Mengurangi Penggunaan Kertas Serta Tumpukan Arsip yang Tidak Digunakan</string>
+
+</resources>

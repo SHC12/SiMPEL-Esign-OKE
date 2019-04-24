@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/action_home"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_home"
+        android:title="Home"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_surat_masuk"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_surat_masuk"
+        android:title="Surat Masuk"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_disposisi_masuk"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_disposisi_masuk"
+        android:title="Disposisi Masuk"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_disposisi_keluar"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_disposisi_keluar"
+        android:title="Disposisi Keluar"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_personal"
+        android:enabled="true"
+        android:icon="@drawable/ic_action_personal"
+        android:title="Disposisi Keluar"
+        app:showAsAction="ifRoom" />
+</menu>
