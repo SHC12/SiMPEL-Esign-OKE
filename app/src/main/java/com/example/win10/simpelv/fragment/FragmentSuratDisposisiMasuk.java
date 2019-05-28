@@ -1,6 +1,8 @@
 package com.example.win10.simpelv.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -48,7 +50,7 @@ public class FragmentSuratDisposisiMasuk extends Fragment {
     private TextView hidden;
 
 
-
+    TextView textViewSDM;
     public FragmentSuratDisposisiMasuk() {
     }
 
@@ -57,6 +59,13 @@ public class FragmentSuratDisposisiMasuk extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.suratdisposisimasuk_fragment, container, false);
 
+
+
+        SharedPreferences mSettings = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        String cookieName = mSettings.getString("pesan", "missing");
+
+        textViewSDM = (TextView) view.findViewById(R.id.tvNamaDM);
+        textViewSDM.setText(cookieName);
 
         rv = (RecyclerView)view.findViewById(R.id.rvDisposisiMasuk);
         rv.setHasFixedSize(true);
@@ -69,7 +78,7 @@ public class FragmentSuratDisposisiMasuk extends Fragment {
         //layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         rv.setLayoutManager(linearLayoutManager);
         progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading....");
+        progressDialog.setMessage("Mohon Tunggu....");
         progressDialog.show();
 
         //setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
@@ -91,6 +100,8 @@ public class FragmentSuratDisposisiMasuk extends Fragment {
 
 
     }
+
+
 
     private void AmbilData(){
 

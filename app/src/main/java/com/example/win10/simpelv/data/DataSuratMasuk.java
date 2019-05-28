@@ -7,6 +7,8 @@ package com.example.win10.simpelv.data;
 public class DataSuratMasuk {
    private String no;
    private String id_surat;
+   // private String token_disposisi;
+    private String nama_naskah;
    private String token_surat;
    private String perihal_surat;
    private String tgl_surat;
@@ -14,9 +16,11 @@ public class DataSuratMasuk {
    private String status_penerima;
    private String no_surat_manual;
 
-    public DataSuratMasuk(String no, String id_surat, String token_surat, String perihal_surat, String tgl_surat, String nama_pengirim, String status_penerima, String no_surat_manual) {
+    public DataSuratMasuk(String no, String id_surat,  String nama_naskah, String token_surat, String perihal_surat, String tgl_surat, String nama_pengirim, String status_penerima, String no_surat_manual) {
         this.no = no;
         this.id_surat = id_surat;
+       // this.token_disposisi = token_disposisi;
+        this.nama_naskah = nama_naskah;
         this.token_surat = token_surat;
         this.perihal_surat = perihal_surat;
         this.tgl_surat = tgl_surat;
@@ -27,6 +31,15 @@ public class DataSuratMasuk {
 
     public DataSuratMasuk() {
     }
+
+    public String getNama_naskah() {
+        return nama_naskah;
+    }
+
+    public void setNama_naskah(String nama_naskah) {
+        this.nama_naskah = nama_naskah;
+    }
+
 
     public String getNo() {
         return no;

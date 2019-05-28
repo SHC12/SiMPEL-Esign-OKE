@@ -28,6 +28,7 @@
 
             <android.support.v7.widget.CardView
                 android:id="@+id/cvInformasiSurat"
+                app:cardBackgroundColor="@color/bg_screen5"
                 app:cardCornerRadius="20dp"
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
@@ -46,11 +47,12 @@
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
+                            android:textColor="@color/white"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_nomor_surat_BDM"
-
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -65,6 +67,7 @@
 
                         <TextView
                             android:layout_width="wrap_content"
+                            android:textColor="@color/white"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
@@ -73,7 +76,7 @@
 
                         <TextView
                             android:id="@+id/tv_hasil_tujuan_BDM"
-
+                            android:textColor="@color/white"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -87,7 +90,7 @@
                         android:orientation="horizontal">
 
                         <TextView
-                            android:layout_width="wrap_content"
+                            android:layout_width="wrap_content"                            android:textColor="@color/white"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
@@ -96,7 +99,7 @@
 
                         <TextView
                             android:id="@+id/tv_hasil_nama_jabatan_penerima_BDM"
-
+                            android:textColor="@color/white"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
@@ -110,6 +113,7 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/cvInformasiSurat2"
                 app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/bg_screen5"
                 android:layout_margin="10dp"
 
                 android:layout_width="match_parent"
@@ -124,7 +128,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <TextView
-                            android:text="Tanggal Surat : "
+                            android:text="Tanggal Surat : " android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -132,7 +136,7 @@
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_tanggal_surat_BDM"
-
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -145,14 +149,14 @@
                         android:layout_height="match_parent">
                         <TextView
                             android:text="Pengirim : "
-                            android:textSize="12dp"
+                            android:textSize="12dp" android:textColor="@color/white"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_pengirim_BDM"
-
+                            android:textColor="@color/white"
                             android:layout_marginBottom="10dp"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
@@ -166,14 +170,14 @@
                         android:layout_height="match_parent">
                         <TextView
                             android:text="Jenis Nota Dinas : "
-                            android:textSize="12dp"
+                            android:textSize="12dp" android:textColor="@color/white"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_jenis_nota_dinas_BDM"
-
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginBottom="10dp"
                             android:layout_marginTop="10dp"
@@ -193,6 +197,7 @@
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.CardView
                 android:id="@+id/cvIsiSurat"
+                app:cardBackgroundColor="@color/bg_screen5"
                 app:cardCornerRadius="20dp"
                 android:layout_margin="10dp"
 
@@ -208,7 +213,69 @@
                         android:layout_height="match_parent">
                         <TextView
                             android:text="Penerima Disposisi : "
-                            android:textSize="12dp"
+                            android:textSize="12dp" android:textColor="@color/white"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <fr.ganfra.materialspinner.MaterialSpinner
+                            android:id="@+id/spinnerPenerimaDisposisi2"
+                            app:ms_arrowColor="#0000FF"
+                            app:ms_arrowSize="15dp"
+                            app:ms_floatingLabelColor="#b33e3e"
+                            app:ms_hint=" "
+
+                            app:ms_hintColor="#000000"
+                            app:ms_multiline="true"
+                            android:layout_width="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_height="wrap_content"/>
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TableRow>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold" android:textColor="@color/white"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Nama"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold" android:textColor="@color/white"
+                                    android:layout_marginRight="20dp"
+                                    android:text="Jabatan"
+                                    />
+
+                            </TableRow>
+                            <TableRow>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="10dp" android:textColor="@color/white"
+                                    android:id="@+id/textViewNama"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="20dp" android:textColor="@color/white"
+                                    android:id="@+id/textViewJabatan"
+                                    />
+
+                            </TableRow>
+                        </TableLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="Penerima Disposisi 2 : "
+                            android:textSize="12dp" android:textColor="@color/white"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
@@ -232,7 +299,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textStyle="bold"
+                                    android:textStyle="bold" android:textColor="@color/white"
                                     android:layout_marginRight="20dp"
                                     android:layout_marginLeft="10dp"
                                     android:text="Nama"
@@ -240,7 +307,7 @@
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:textStyle="bold"
+                                    android:textStyle="bold" android:textColor="@color/white"
                                     android:layout_marginRight="20dp"
                                     android:text="Jabatan"
                                     />
@@ -251,26 +318,28 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_marginRight="20dp"
-                                    android:layout_marginLeft="10dp"
-                                    android:id="@+id/textViewNama"
+                                    android:layout_marginLeft="10dp" android:textColor="@color/white"
+                                    android:id="@+id/textViewNama2"
                                     />
                                 <TextView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:layout_marginRight="20dp"
-                                    android:id="@+id/textViewJabatan"
+                                    android:layout_marginRight="20dp" android:textColor="@color/white"
+                                    android:id="@+id/textViewJabatan2"
                                     />
 
                             </TableRow>
                         </TableLayout>
-                    </LinearLayout><LinearLayout
+                    </LinearLayout>
+
+                    <LinearLayout
                     android:orientation="vertical"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
                     <TextView
                         android:text="Instruksi : "
                         android:textSize="12dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="10dp" android:textColor="@color/white"
                         android:layout_marginLeft="10dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content" />
@@ -293,7 +362,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
                         <TextView
-                            android:text="Jam : "
+                            android:text="Jam : " android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -305,6 +374,7 @@
                             android:id="@+id/editWaktu"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:textColorHint="@color/white"
                             android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
                             android:layout_toEndOf="@+id/tanggal"
@@ -318,20 +388,23 @@
                         android:layout_height="match_parent">
                         <TextView
                             android:text="Tanggal Selesai : "
-                            android:textSize="12dp"
+                            android:textSize="12dp" android:textColor="@color/white"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/tv_hasil_tanggal_selesai_BDM"
 
-                            android:textSize="12dp"
-                            android:layout_marginBottom="10dp"
+                        <EditText
+android:textColorHint="@color/white"
+                            android:id="@+id/editTanggalSelesai"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
                             android:layout_marginTop="10dp"
-                            android:layout_marginLeft="10dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
+                            android:layout_toEndOf="@+id/tanggal"
+                            android:hint=""
+                            android:text=""
+                            android:textSize="14dp" />
                     </LinearLayout>
                     <LinearLayout
                         android:orientation="horizontal"
@@ -342,7 +415,7 @@
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
-                            android:layout_width="wrap_content"
+                            android:layout_width="wrap_content" android:textColor="@color/white"
                             android:layout_height="wrap_content" />
 
                         <EditText
@@ -351,6 +424,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:gravity="top|left"
+                            android:textColor="@color/white"
                             android:inputType="textMultiLine"
                             android:overScrollMode="always"
                             android:scrollbarStyle="insideInset"
@@ -366,7 +440,7 @@
                         android:layout_height="match_parent">
                         <Button
                             android:text="Kirim Surat"
-                            android:id="@+id/btnKirimSuratSM"
+                            android:id="@+id/btnKirimSurat"
 
                             android:layout_marginLeft="10dp"
                             android:layout_marginBottom="10dp"

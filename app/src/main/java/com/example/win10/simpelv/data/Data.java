@@ -17,23 +17,12 @@ public class Data {
     private String tanggalSurat;
     private String token_disposisi;
 
-    public Data(String str, String str2, String str3, String str4, String str5, String str6, String str7, String str8, String str9, String str10, String str11) {
-        this.id_user = str;
-        this.id_instansi = str3;
-        this.token_disposisi = str2;
-        this.idSurat = str4;
-        this.id_disposisi = str5;
-        this.tanggalSurat = str6;
-        this.perihalSurat = str7;
-        this.pengirimSurat = str8;
-        this.noSurat = str9;
-        this.statusPenerima = str10;
-        this.statusDisposisi = str11;
-    }
 
     public Data() {
 
     }
+
+
 
 
     public String getId_user() {

@@ -1,8 +1,10 @@
 package com.example.win10.simpelv.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.CardView;
@@ -50,6 +52,8 @@ public class FragmentSuratMasuk extends Fragment {
     public String token_surat = "";
     public String nama_p = "";
 
+    TextView textViewSM;
+
     SharedPreferences sharedpreferences;
 
     public FragmentSuratMasuk() {
@@ -65,6 +69,14 @@ public class FragmentSuratMasuk extends Fragment {
 //        return inflater.inflate(R.layout.suratmasuk_fragment, container, false);
 
 
+
+        SharedPreferences mSettings = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        String cookieName = mSettings.getString("pesan", "missing");
+
+
+        textViewSM = (TextView)view.findViewById(R.id.tvNamaSM);
+        textViewSM.setText(cookieName);
+
         RecyclerView rv = (RecyclerView)view.findViewById(R.id.rvSuratMasuk);
         rv.setHasFixedSize(true);
 
@@ -75,8 +87,15 @@ public class FragmentSuratMasuk extends Fragment {
         //layoutManager.setOrientation(GridLayoutManager.VERTICAL);
         rv.setLayoutManager(layoutManager);
         progressDialog = new ProgressDialog(getActivity());
-        progressDialog.setMessage("Loading....");
+        progressDialog.setMessage("Mohon Tunggu....");
         progressDialog.show();
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            public void run() {
+                progressDialog.dismiss();
+            }
+        }, 10000);
 
 
         listData = new ArrayList<DataSuratMasuk>();
@@ -105,11 +124,14 @@ public class FragmentSuratMasuk extends Fragment {
                             JSONObject jsonObject = response.getJSONObject(i);
                             DataSuratMasuk data = new DataSuratMasuk();
                             data.setNo(jsonObject.getString("no"));
+                            data.setNama_pengirim(jsonObject.getString("nama_pengirim"));
                             data.setId_surat(jsonObject.getString("id_surat"));
+                          //  data.setToken_disposisi(jsonObject.getString("token_disposisi"));
+                            data.setNama_naskah(jsonObject.getString("nama_naskah"));
                             data.setToken_surat(jsonObject.getString("token_surat"));
                             data.setPerihal_surat(jsonObject.getString("perihal_surat"));
                             data.setTgl_surat(jsonObject.getString("tgl_surat"));
-                            data.setNama_pengirim(nama_p.toString());
+
                             data.setStatus_penerima(jsonObject.getString("status_penerima"));
                             data.setNo_surat_manual(jsonObject.getString("no_surat_manual"));
 

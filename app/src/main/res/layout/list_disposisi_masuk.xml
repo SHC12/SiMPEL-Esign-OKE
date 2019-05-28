@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardCornerRadius="20dp"
-       app:cardBackgroundColor="#eafd3b"
+       app:cardBackgroundColor="@color/bg_screen5"
         android:layout_margin="10dp">
         <LinearLayout
             android:padding="10dp"
@@ -27,9 +27,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     android:text="No"/>
                 <TextView
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:id="@+id/textview_hasil_no_disposisi_masuk"
                     android:layout_width="match_parent"
                     android:gravity="center"
@@ -43,6 +45,7 @@
                 android:orientation="horizontal">
                 <TextView
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:id="@+id/textview_perihal_surat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -51,6 +54,7 @@
 
                 <TextView
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:id="@+id/textview_hasil_perihal_surat_disposisi_masuk"
                     android:layout_width="match_parent"
                     android:gravity="center"
@@ -64,6 +68,7 @@
                 android:orientation="horizontal">
                 <TextView
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:id="@+id/textview_tanggal_surat"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -72,6 +77,7 @@
 
                 <TextView
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:id="@+id/textview_hasil_tanggal_surat_disposisi_masuk"
                     android:layout_width="match_parent"
                     android:gravity="center"
@@ -85,6 +91,7 @@
                 android:orientation="horizontal">
                 <TextView
                     android:layout_weight="1"
+                    android:textColor="@color/white"
                     android:id="@+id/textview_nama_pengirim"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -96,6 +103,7 @@
                     android:id="@+id/textview_hasil_nama_pengirim_disposisi_masuk"
                     android:layout_width="match_parent"
                     android:gravity="center"
+                    android:textColor="@color/white"
                     android:layout_height="wrap_content"
                     android:text="Hasil Nama Pengirim"/>
             </LinearLayout>
@@ -107,6 +115,7 @@
                 <TextView
                     android:layout_weight="1"
                     android:id="@+id/textview_status_penerima"
+                    android:textColor="@color/white"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="center"
@@ -116,6 +125,7 @@
                     android:layout_weight="1"
                     android:id="@+id/textview_hasil_nama_status_penerima"
                     android:layout_width="match_parent"
+                    android:textColor="@color/white"
                     android:gravity="center"
                     android:layout_height="wrap_content"
                     android:text="Hasil Status"/>

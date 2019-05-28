@@ -1,5 +1,7 @@
 <resources>
-    <string name="app_name">SiMPELv</string>
+    <string name="app_name">SiMPEL</string>
+    <string name="FCM_REF">com.example.win10.simpelv.fcm_pref</string>
+    <string name="FCM_TOKEN">com.example.win10.simpelv.fcm_token</string>
 
     <string name="home">Home</string>
     <string name="suratmasuk">Surat Masuk</string>
@@ -20,5 +22,6 @@
 
     <string name="slide_4_title">GO GREEN OFFICE</string>
     <string name="slide_4_desc">Mengurangi Penggunaan Kertas Serta Tumpukan Arsip yang Tidak Digunakan</string>
+
 
 </resources>

@@ -11,7 +11,9 @@
 
         android:id="@+id/scrollDisposisiMasuk"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
         <LinearLayout
             android:layout_width="match_parent"
             android:orientation="vertical"
@@ -28,6 +30,7 @@
             <android.support.v7.widget.CardView
                 android:id="@+id/cvInformasiSurat"
                 app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/bg_screen5"
                 android:layout_margin="10dp"
 
                 android:layout_width="match_parent"
@@ -44,6 +47,7 @@
                             android:text="Nomor Agenda Surat Masuk : "
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
+                            android:textColor="@color/white"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -52,6 +56,7 @@
                             android:text=""
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
+                            android:textColor="@color/white"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
@@ -64,12 +69,13 @@
                             android:text="Nomor Surat : "
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
+                            android:textColor="@color/white"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_nomor_surat"
-
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -86,13 +92,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginLeft="10dp"
+                            android:textColor="@color/white"
                             android:layout_marginTop="10dp"
                             android:text="Tujuan : "
                             android:textSize="12dp" />
 
                         <TextView
                             android:id="@+id/tv_hasil_tujuan"
-
+                            android:textColor="@color/white"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
 
@@ -111,11 +118,12 @@
                             android:layout_marginLeft="10dp"
                             android:layout_marginTop="10dp"
                             android:text="             "
+                            android:textColor="@color/white"
                             android:textSize="12dp" />
 
                         <TextView
                             android:id="@+id/tv_hasil_nama_jabatan_penerima"
-
+                            android:textColor="@color/white"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="10dp"
@@ -129,6 +137,7 @@
                 android:id="@+id/cvInformasiSurat2"
                 app:cardCornerRadius="20dp"
                 android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/bg_screen5"
 
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -143,6 +152,7 @@
                         <TextView
                             android:text="Tanggal Penerimaan Surat : "
                             android:textSize="12dp"
+                            android:textColor="@color/white"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
@@ -151,6 +161,7 @@
                             android:id="@+id/tv_hasil_tanggal_penerimaan_surat"
 
                             android:textSize="12dp"
+                            android:textColor="@color/white"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
@@ -162,6 +173,7 @@
                         android:layout_height="match_parent">
                         <TextView
                             android:text="Tanggal Surat : "
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -169,7 +181,7 @@
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_tanggal_surat"
-
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -182,6 +194,7 @@
                         android:layout_height="match_parent">
                         <TextView
                             android:text="Pengirim : "
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -189,7 +202,7 @@
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_pengirim"
-
+                            android:textColor="@color/white"
                             android:layout_marginBottom="10dp"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
@@ -204,13 +217,14 @@
                         <TextView
                             android:text="Jenis Nota Dinas : "
                             android:textSize="12dp"
+                            android:textColor="@color/white"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_jenis_nota_dinas"
-
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginBottom="10dp"
                             android:layout_marginTop="10dp"
@@ -226,12 +240,13 @@
                 android:layout_marginTop="10dp"
                 android:textSize="20dp"
                 android:layout_width="match_parent"
+
                 android:layout_height="wrap_content" />
             <android.support.v7.widget.CardView
                 android:id="@+id/cvIsiSurat"
                 app:cardCornerRadius="20dp"
                 android:layout_margin="10dp"
-
+                app:cardBackgroundColor="@color/bg_screen5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -244,6 +259,7 @@
                         android:layout_height="match_parent">
                         <TextView
                             android:text="Judul Surat : "
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -251,7 +267,7 @@
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_judul_surat"
-
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -266,6 +282,7 @@
                             android:text="Buka Surat"
                             android:id="@+id/btnBukaSurat"
                             android:onClick="download"
+
                             android:layout_marginLeft="10dp"
                             android:layout_marginBottom="10dp"
                             android:layout_width="wrap_content"
@@ -293,7 +310,7 @@
                 android:id="@+id/cvDetailDisposisi1"
                 app:cardCornerRadius="20dp"
                 android:layout_margin="10dp"
-
+                app:cardBackgroundColor="@color/bg_screen5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -307,13 +324,14 @@
                         <TextView
                             android:text="Tanggal Disposisi : "
                             android:textSize="12dp"
+                            android:textColor="@color/white"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_tanggal_disposisi"
-
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -326,6 +344,7 @@
                         android:layout_height="match_parent">
                         <TextView
                             android:text="Pengirim : "
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -333,7 +352,7 @@
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_pengirim_detail_disposisi"
-
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -350,10 +369,11 @@
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
+                            android:textColor="@color/white"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_instruksi"
-
+                            android:textColor="@color/white"
                             android:layout_marginBottom="10dp"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
@@ -367,7 +387,7 @@
                 android:id="@+id/cvDetailDisposisi2"
                 app:cardCornerRadius="20dp"
                 android:layout_margin="10dp"
-
+                app:cardBackgroundColor="@color/bg_screen5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <LinearLayout
@@ -381,13 +401,14 @@
                         <TextView
                             android:text="Tanggal Selesai : "
                             android:textSize="12dp"
+                            android:textColor="@color/white"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_tanggal_selesai"
-
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -401,13 +422,14 @@
                         <TextView
                             android:text="Penerima : "
                             android:textSize="12dp"
+                            android:textColor="@color/white"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_penerima"
-
+                            android:textColor="@color/white"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
                             android:layout_marginLeft="10dp"
@@ -422,12 +444,13 @@
                             android:text="Pesan : "
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"
+                            android:textColor="@color/white"
                             android:layout_marginLeft="10dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content" />
                         <TextView
                             android:id="@+id/tv_hasil_pesan"
-
+                            android:textColor="@color/white"
                             android:layout_marginBottom="10dp"
                             android:textSize="12dp"
                             android:layout_marginTop="10dp"

@@ -24,6 +24,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.win10.simpelv.fcm.MySingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -32,6 +33,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Login extends AppCompatActivity {
+    private String url_get_token = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/fcm_insert.php";
+
+
+
     private static final String TAG = "LoginActivity";
     Button btnLogin1;
     ConnectivityManager conMgr;
@@ -51,7 +56,9 @@ public class Login extends AppCompatActivity {
     public static final String PREFS_NAME = "MyPrefsFile";
 
     TextInputLayout valUsername, valPassword;
-    String id_username, password;
+    String id_username, password, id_user;
+
+
 
 
     EditText txtEmail, txtPassword;
@@ -63,11 +70,16 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.M && checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.M&& checkSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED){
             requestPermissions(new String[] {android.Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1001);
         }
 
+
+        SharedPreferences sharedPreferences = getApplication().getSharedPreferences(getString(R.string.FCM_REF), Context.MODE_PRIVATE);
+        final String token = sharedPreferences.getString(getString(R.string.FCM_TOKEN), "");
+
+      //  Toast.makeText(Login.this, "Token : " + token, Toast.LENGTH_SHORT).show();
         txtEmail = (EditText) findViewById(R.id.et_email);
         txtPassword = (EditText) findViewById(R.id.et_password);
         btnLogin = (Button)findViewById(R.id.btn_login);
@@ -89,8 +101,42 @@ public class Login extends AppCompatActivity {
                 }else {
                     auth_user(id_username, password);
                 }
+
+
             }
         });
+
+    }
+
+    public void getToken(){
+
+
+
+        SharedPreferences sharedPreferences = getApplication().getSharedPreferences(getString(R.string.FCM_REF), Context.MODE_PRIVATE);
+        final String token = sharedPreferences.getString(getString(R.string.FCM_TOKEN), "");
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url_get_token, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_user", id_username);     // sesuaikan dengan $_POST pada PHP
+                params.put("fcm_token", token);
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
 
     }
 
@@ -110,25 +156,32 @@ public class Login extends AppCompatActivity {
 //                            JSONObject jsonObject1 = jsonObject.getJSONObject();
 
                             String nama_user = jsonObject.getString("nama_lengkap").trim();
-                            String id_user = jsonObject.getString("id_user").trim();
+                            String nama_instansi = jsonObject.getString("nama_instansi").trim();
+                            id_user = jsonObject.getString("id_user").trim();
                             String id_instansi = jsonObject.getString("id_instansi").trim();
-                            //   String token_disposisi = jsonObject.getString("token_disposisi").trim();
-                            /*Toast.makeText(Login.this,
-                                    "Login berhasil ! \n Nama : "+ nama_user,
-                                    Toast.LENGTH_LONG)
-                                    .show();
-*/
+                            String nama_lengkap = jsonObject.getString("nama_lengkap").trim();
+                            String username = jsonObject.getString("username").trim();
+                            String message = jsonObject.getString("message");
+
+
+
+
                             SharedPreferences settings = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
                             SharedPreferences.Editor editor = settings.edit();
                             editor.putString("id_user", id_user);
+                            editor.putString("nama_lengkap", nama_lengkap);
                             editor.putString("id_instansi", id_instansi);
+                            editor.putString("nama_instansi", nama_instansi);
+                            editor.putString("username", username);
                             editor.putString("name", nama_user);
+                            editor.putString("message", message);
                             editor.commit();
 
 
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.putExtra("username", nama_user);
+                            intent.putExtra("message", message);
                             intent.putExtra("id_user", id_user);
 
                             startActivity(intent);

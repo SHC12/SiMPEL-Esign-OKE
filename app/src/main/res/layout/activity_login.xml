@@ -8,6 +8,9 @@
     android:padding="24dp"
     tools:context="com.example.win10.simpelv.Login">
 
+
+
+
     <TextView
         android:id="@+id/textView10"
         android:layout_width="match_parent"
@@ -16,6 +19,7 @@
         android:layout_marginTop="32dp"
         android:layout_weight="1"
 
+        android:fontFamily="sans-serif"
         android:text="Masuk"
         android:textColor="@color/black_main"
         android:textSize="30sp" />

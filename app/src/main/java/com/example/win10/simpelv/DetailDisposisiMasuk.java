@@ -17,7 +17,9 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
@@ -29,20 +31,31 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.DataInputStream;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 public class DetailDisposisiMasuk extends AppCompatActivity {
     public static final String PREFS_NAME = "MyPrefsFile";
     String Tag = "DetailDisposisiMasuk";
 
     //private String URL = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/model_detail_disposisi_masuk.php?token_disposisi=59c9a631372a13efa34b85298174a074";
-    private String URL = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/model_detail_disposisi_masuk.php?token_disposisi=";
+    private String URL = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/model_detail_disposisi_masuk_new2.php?token_disposisi=";
+    private String URL_READ = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/update_read_disposisi_masuk.php?id_disposisi_masuk=";
     private String getPDF = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/get_file_pdf_disposisi_masuk.php?id_surat=";
     private String getPengirim = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/model_detail_surat_masuk.php?token_surat=";
     private String token_disposisi = "";
-    private String token_surat = "";
+
 
 
 
@@ -50,6 +63,7 @@ public class DetailDisposisiMasuk extends AppCompatActivity {
 
     private String api_pdf_disposisi_masuk = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/get_file_pdf_disposisi_masuk.php?id_surat=";
     public String url_pdf_disposisi_masuk = "";
+    public String url_id_disposisi_masuk = "";
     String URL_FILE = "";
     String nama_surat = "";
     public String file_url = "";
@@ -57,6 +71,7 @@ public class DetailDisposisiMasuk extends AppCompatActivity {
     private String id_surat = "";
     public String Id_surat = "";
     private String no_surat = "";
+    private String id_disposisi_masuk = "";
 
     private String url_detail_disposisi_masuk = "";
     private String url_detail_get_surat = "";
@@ -72,7 +87,7 @@ public class DetailDisposisiMasuk extends AppCompatActivity {
 
 
     private FloatingActionButton fab;
-
+    String token_surat;
 
     public String No_surat_manual = "";
     public String Nama_lengkap_penerima = "";
@@ -87,12 +102,17 @@ public class DetailDisposisiMasuk extends AppCompatActivity {
 
         StrictMode.VmPolicy.Builder builder = new StrictMode.VmPolicy.Builder(); StrictMode.setVmPolicy(builder.build());
 
-
+        progressDialog = new ProgressDialog(DetailDisposisiMasuk.this);
+        progressDialog.setMessage("Loading....");
+        progressDialog.setCancelable(false);
+        progressDialog.show();
 
         //progressDialog = new ProgressDialog(DetailDisposisiMasuk.this);
         //progressDialog.setMessage("Mohon Tunggu");
         // progressDialog.show();
-        new DownloadFile().execute(URL_FILE, nama_surat);
+     //   new DownloadFile().execute(URL_FILE, nama_surat);
+        token_disposisi = getIntent().getStringExtra("token_disposisi");
+        url_detail_disposisi_masuk = URL + token_disposisi;
         fab = (FloatingActionButton) findViewById(R.id.fabBuatDisposisi);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,12 +122,18 @@ public class DetailDisposisiMasuk extends AppCompatActivity {
                 in.putExtra("nama_lengkap_penerima", Nama_lengkap_penerima);
                 in.putExtra("tgl_selesai", Tgl_selesai);
                 in.putExtra("tgl_surat", Tgl_surat);
+                in.putExtra("id_surat", id_surat);
+                in.putExtra("token_disposisi", token_disposisi);
                 in.putExtra("nama_naskah", Nama_naskah);
 
                 startActivity(in);
             }
         });
 
+
+        id_disposisi_masuk = getIntent().getStringExtra("id_disposisi_masuk");
+
+        url_id_disposisi_masuk = URL_READ + id_disposisi_masuk;
 
         /*String extStorageDirectory = Environment.getExternalStorageDirectory()
                 .toString();
@@ -133,29 +159,17 @@ public class DetailDisposisiMasuk extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_VIEW);
                 intent.setDataAndType(Uri.parse(googleDocsUrl ), "text/html");
                 startActivity(intent);*/
-                new DownloadFile().execute(URL_FILE, nama_surat);
-
-                File pdfFile = new File(Environment.getExternalStorageDirectory() + "/SiMPEL/Disposisi Masuk/" + nama_surat);  // -> filename = maven.pdf
-                Uri path = Uri.fromFile(pdfFile);
-
-                Intent pdfIntent = new Intent(Intent.ACTION_VIEW);
-                pdfIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-                pdfIntent.setDataAndType(path, "application/pdf");
-                pdfIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                startActivity(pdfIntent);
+                openPdf(nama_surat);
 
             }
         });
 
-        token_disposisi = getIntent().getStringExtra("token_disposisi");
-        url_detail_disposisi_masuk = URL + token_disposisi;
+
 
         id_surat = getIntent().getStringExtra("id_surat");
         url_detail_get_surat = getPDF + id_surat;
 
         url_pdf_disposisi_masuk = api_pdf_disposisi_masuk + id_surat;
-
-
 
 
 
@@ -183,15 +197,63 @@ public class DetailDisposisiMasuk extends AppCompatActivity {
         penerima.setText(n);
 
 
-
+      //  Toast.makeText(getApplicationContext(), "Id surat"+ id_disposisi_masuk, Toast.LENGTH_SHORT).show();
 
 
         AmbilDataDetailDisposisiMasuk();
         ambilPdfDisposisiMasuk();
         getPdf();
-        ambilPenerima();
-        ambilPengirim();
 
+        ambilPengirim();
+        readDisposisiMasuk();
+
+    }
+
+
+    public void readDisposisiMasuk(){
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url_id_disposisi_masuk, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> params = new HashMap<>();
+                params.put("id_disposisi_masuk", id_disposisi_masuk);     // sesuaikan dengan $_POST pada PHP
+
+                return params;
+            }
+        };
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+
+    }
+    public void openPdf(String filename){
+        Log.w("IR", "TRYING TO RENDER: " + Environment.getExternalStorageDirectory().getAbsolutePath()+nama_surat);
+      //  Toast.makeText(DetailDisposisiMasuk.this, ""+nama_surat, Toast.LENGTH_SHORT).show();
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), filename);// Here you declare your pdf path
+
+        Intent pdfViewIntent = new Intent(Intent.ACTION_VIEW);
+        pdfViewIntent.setDataAndType(Uri.fromFile(file),"application/pdf");
+        pdfViewIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        pdfViewIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        pdfViewIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Intent intent = Intent.createChooser(pdfViewIntent, "Open File");
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(getApplicationContext(), "Anda Tidak Memiliki Aplikasi Pembaca Berkas PDF", Toast.LENGTH_SHORT).show();
+        }
     }
     public void AmbilDataDetailDisposisiMasuk(){
 
@@ -242,6 +304,13 @@ public class DetailDisposisiMasuk extends AppCompatActivity {
                         Date date = new SimpleDateFormat("dd/mm/yyyy").parse(Tgl_selesai);
                         String formattedDate = new SimpleDateFormat("dd mm yyyy").format(date);
 */
+
+/*
+                        String strDate = Tgl_selesai;
+                        SimpleDateFormat dateFormat = new SimpleDateFormat("dd MM yyyy");
+                        Date datee = dateFormat.parse(strDate);
+                        System.out.println(datee);*/
+
                         tujuan.setText(Nama_lengkap_penerima);
                         tanggalsurat.setText(Tgl_surat);
                         jenisnotadinas.setText(Nama_naskah);
@@ -251,7 +320,18 @@ public class DetailDisposisiMasuk extends AppCompatActivity {
                         pengirimdisposisi.setText(Nama_lengkap_penerima);
                         tanggaldisposisi.setText(Tgl_surat);
                         tanggalselesai.setText(Tgl_selesai);
+                        pengirim.setText(Nama_pengirim);
+                    //    Toast.makeText(DetailDisposisiMasuk.this, "nama pengirim"+Nama_pengirim, Toast.LENGTH_SHORT).show();
 
+
+
+                        SharedPreferences settings = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = settings.edit();
+                        token_surat = Token_surat;
+                        editor.putString("tokensurat", token_surat);
+                        editor.putString("tujuan_dm", Nama_lengkap_penerima);
+                        editor.putString("pengirim_dm", Nama_pengirim);
+                        editor.commit();
 
 
 
@@ -333,6 +413,14 @@ public class DetailDisposisiMasuk extends AppCompatActivity {
 
                         URL_FILE = surat_link;
                         nama_surat = surat_name;
+                        new Thread(new Runnable() {
+                            public void run() {
+                                DownloadFiles();
+                                progressDialog.dismiss();
+
+                            }
+                        }).start();
+
 
                     }
 
@@ -387,9 +475,33 @@ public class DetailDisposisiMasuk extends AppCompatActivity {
         Volley.newRequestQueue(this).add(stringRequest);
     }
 
-    private void ambilPenerima(){
+    public void DownloadFiles() {
+
+        try {
+            java.net.URL u = new URL(URL_FILE);
+            InputStream is = u.openStream();
+
+            DataInputStream dis = new DataInputStream(is);
+
+            byte[] buffer = new byte[1024];
+            int length;
+
+            FileOutputStream fos = new FileOutputStream(new File(Environment.getExternalStorageDirectory() + "/" + nama_surat));
+
+            while ((length = dis.read(buffer)) > 0) {
+                fos.write(buffer, 0, length);
+            }
 
 
+
+
+        } catch (MalformedURLException mue) {
+            Log.e("SYNC getUpdate", "malformed url error", mue);
+        } catch (IOException ioe) {
+            Log.e("SYNC getUpdate", "io error", ioe);
+        } catch (SecurityException se) {
+            Log.e("SYNC getUpdate", "security error", se);
+        }
     }
 
 
@@ -409,7 +521,7 @@ public class DetailDisposisiMasuk extends AppCompatActivity {
         try{
             startActivity(pdfIntent);
         }catch(ActivityNotFoundException e){
-            Toast.makeText(DetailDisposisiMasuk.this, "No Application available to view PDF", Toast.LENGTH_SHORT).show();
+            Toast.makeText(DetailDisposisiMasuk.this, "Anda Tidak Memiliki Aplikasi Pembaca Berkas PDF", Toast.LENGTH_SHORT).show();
         }
     }
 

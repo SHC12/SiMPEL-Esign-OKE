@@ -1,10 +1,14 @@
 package com.example.win10.simpelv.fragment;
 
 import android.app.ProgressDialog;
+import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -21,6 +25,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.win10.simpelv.R;
 import com.example.win10.simpelv.adapter.AdapterDisposisiMasuk;
 import com.example.win10.simpelv.adapter.AdapterSuratMasuk;
+import com.example.win10.simpelv.data.DataDisposisiKeluar;
 import com.example.win10.simpelv.data.DataDisposisiMasuk;
 import com.example.win10.simpelv.data.DataSuratMasuk;
 
@@ -49,9 +54,12 @@ public class FragmentHome extends Fragment {
     public String token_surat = "";
     public String nama_p = "";
 
-    TextView jumlahSM, jumlahDM, jumlahDK;
+    TextView jumlahSM, jumlahDM, jumlahDK, jabatan, message;
 
     SharedPreferences sharedpreferences;
+    private String URLLL = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/model_disposisi_keluar.php?id_user=";
+    String id_userrrr = "";
+    String URL_MODEL_DISPOSISI_KELUAR = "";
 
 
 
@@ -61,13 +69,18 @@ public class FragmentHome extends Fragment {
 
     private String token_disposisi = "";
     public String id_surat;
+    String pesan, jab;
     public RecyclerView rv;
-    public CardView cv;
+    public CardView cvSM;
+    public CardView cvDM;
+    public CardView cvDK;
     private LinearLayoutManager linearLayoutManager;
     View view;
     private TextView hidden;
     public FragmentHome() {
     }
+
+
 
 
 
@@ -80,19 +93,40 @@ public class FragmentHome extends Fragment {
         jumlahSM = (TextView)view.findViewById(R.id.jumlah_suratmasuk);
         jumlahDM = (TextView)view.findViewById(R.id.jumlah_disposisimasuk);
         jumlahDK = (TextView)view.findViewById(R.id.jumlah_disposisikeluar);
+        message = (TextView)view.findViewById(R.id.tvNama);
+        jabatan = (TextView)view.findViewById(R.id.tvJabatan);
+        cvSM = (CardView)view.findViewById(R.id.cvSuratMasuk);
+        cvDM = (CardView)view.findViewById(R.id.cvDisposisiMasuk);
+        cvDK = (CardView)view.findViewById(R.id.cvSuratDisposisiKeluar);
 
 
 
+
+
+        id_userrrr = getActivity().getIntent().getStringExtra("id_user");
+        URL_MODEL_DISPOSISI_KELUAR = URLLL + id_userrrr;
+
+        pesan = getActivity().getIntent().getStringExtra("message");
+        jab = getActivity().getIntent().getStringExtra("nama_instansi");
+
+        message.setText(pesan);
+        jabatan.setText(jab);
         id_userr = getActivity().getIntent().getStringExtra("id_user");
         url_surat_masuk = URL + id_userr;
 
         id_userrr = getActivity().getIntent().getStringExtra("id_user");
         url_disposisi_masuk = URLL + id_userrr;
 
+        SharedPreferences mSettings = getActivity().getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = mSettings.edit();
+        editor.putString("pesan", pesan);
+        //editor.putInt("id", id);
+        editor.apply();
 
 
         AmbilDataSuratMaSuk();
         AmbilDataDisposisiMasuk();
+        AmbilDataModelDK();
         return view;
     }
 
@@ -150,7 +184,7 @@ public class FragmentHome extends Fragment {
                             JSONObject jsonObject = response.getJSONObject(i);
                             int total = response.length();
                             String totals = String.valueOf(total);
-                            jumlahDM.setText("SURAT MASUK : " + totals.toString());
+                            jumlahDM.setText("DISPOSISI MASUK : " + totals.toString());
                         //    Toast.makeText(getContext(), "Total " + totals, Toast.LENGTH_SHORT).show();
 
 
@@ -165,6 +199,40 @@ public class FragmentHome extends Fragment {
                     }
                 }else{
                     hidden.setVisibility(View.VISIBLE);
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+
+        Volley.newRequestQueue(getActivity()).add(jsonArrayRequest);
+    }
+    private void AmbilDataModelDK(){
+
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL_MODEL_DISPOSISI_KELUAR, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+
+                if (response.length() > 0) {
+                    for (int i = 0; i < response.length(); i++) {
+                        try {
+
+                            JSONObject jsonObject = response.getJSONObject(i);
+                            int total = response.length();
+                            String totals = String.valueOf(total);
+                            jumlahDK.setText("DISPOSISI KELUAR : " + totals.toString());
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
 
             }

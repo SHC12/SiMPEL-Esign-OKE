@@ -19,6 +19,7 @@ android {
     }
     productFlavors {
     }
+    useLibrary 'org.apache.http.legacy'
 }
 
 dependencies {
@@ -35,5 +36,14 @@ dependencies {
     compile 'com.wdullaer:materialdatetimepicker:2.3.0'
     compile 'com.github.clans:fab:1.6.2'
     compile 'com.github.ganfra:material-spinner:1.1.1'
+    compile 'com.github.barteksc:android-pdf-viewer:2.8.2'
+    compile 'com.google.firebase:firebase-messaging:10.0.1'
+    compile 'es.voghdev.pdfviewpager:library:1.0.6'
     testCompile 'junit:junit:4.12'
 }
+
+
+
+
+
+apply plugin: 'com.google.gms.google-services'
