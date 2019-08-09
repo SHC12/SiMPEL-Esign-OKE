@@ -23,16 +23,22 @@
         android:enabled="true"
         app:showAsAction="ifRoom"
         android:icon="@drawable/ic_home_black_24dp"/>
-    <item
+  <!--  <item
         android:id="@+id/disposisikeluar_menu"
         android:title="@string/disposisikeluar"
         app:showAsAction="ifRoom"
         android:enabled="true"
-        android:icon="@drawable/ic_present_to_all_black_24dp"/>
+        android:icon="@drawable/ic_present_to_all_black_24dp"/>-->
+    <item
+        android:id="@+id/konsep_menu"
+        android:title="@string/konsep"
+        app:showAsAction="ifRoom"
+        android:enabled="true"
+        android:icon="@drawable/ic_contact_mail_black_24dp"/>
     <item
         android:id="@+id/personal_menu"
-        android:title="@string/personal"
+        android:title="@string/TTS"
         android:enabled="true"
         app:showAsAction="ifRoom"
-        android:icon="@drawable/ic_account_box_black_24dp"/>
+        android:icon="@drawable/ic_action_signature"/>
 </menu>

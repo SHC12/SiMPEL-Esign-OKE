@@ -48,4 +48,19 @@
         <item>@color/dot_dark_screen4</item>
     </array>
 
+
+
+    <color name="lightgray">#ededed</color>
+    <color name="deeppurple">#7c4dff</color>
+    <color name="yello">#ffb300</color>
+    <color name="greenHD">#00bfa5</color>
+    <color name="colorAccentHD">#FF4081</color>
+    <color name="darkblue">#23283a</color>
+    <color name="testcolorblue">#152b38</color>
+    <color name="pink">#fe104d</color>
+
+    <color name="black_overlay">#66000000</color>
+
+
+
 </resources>

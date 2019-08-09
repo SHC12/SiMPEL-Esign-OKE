@@ -40,15 +40,11 @@
         android:id="@+id/tvNamaPersonal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
-    <Button
-        android:id="@+id/btnLogout"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvSignature"
+        android:layout_below="@id/namaa"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="24dp"
-        android:layout_weight="1"
-        android:background="@drawable/bg_btn_secondary"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:text="Keluar"
-        android:textColor="@color/white" />
+        android:layout_height="match_parent">
+
+    </android.support.v7.widget.RecyclerView>
 </RelativeLayout>

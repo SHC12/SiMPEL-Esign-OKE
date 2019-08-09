@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="24dp"
-    tools:context="com.example.win10.simpelv.Login">
+    tools:context="com.egov.win10.simpelv.Login">
 
 
 

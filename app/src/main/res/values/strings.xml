@@ -6,11 +6,16 @@
     <string name="home">Home</string>
     <string name="suratmasuk">Surat Masuk</string>
     <string name="disposisimasuk">Disposisi Masuk</string>
+    <string name="konsep">Konsep</string>
     <string name="disposisikeluar">Disposisi Keluar</string>
     <string name="personal">Personal</string>
+    <string name="TTS">Tanda Tangan Surat</string>
     <string name="next">LANJUT</string>
     <string name="skip">LEWATI</string>
     <string name="start">MULAI</string>
+    <string name="underline"><u>Logout</u></string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
 
 
     <string name="slide_1_title">CEPAT</string>

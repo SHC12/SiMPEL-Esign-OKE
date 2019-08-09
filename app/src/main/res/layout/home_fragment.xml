@@ -4,107 +4,492 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <ImageView
-        android:id="@+id/simpel"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@color/bg_screen5"
-        />
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/simpel"
-        android:background="#f7ecec"
-        />
-    <TextView
-        android:text="SiMPEL"
-        android:id="@+id/tvSimpel"
-        android:textSize="18dp"
-        android:textStyle="bold"
-        android:textColor="#eef2f2"
-        android:layout_margin="10dp"
-        android:layout_centerHorizontal="true"
-        android:gravity="center"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:text="Dedi Kurniawan, A.Md.T"
-        android:gravity="left"
-        android:textSize="15dp"
-        android:layout_below="@id/tvSimpel"
-        android:textStyle="bold"
-    android:layout_margin="10dp"
-        android:textColor="@color/bg_screen5"
-        android:id="@+id/tvNama"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-    <TextView
-        android:text=""
-        android:gravity="center"
-        android:textSize="15dp"
-        android:layout_marginTop="10dp"
-        android:layout_below="@id/tvNama"
-        android:textStyle="bold"
-        android:textColor="#eef2f2"
+    <!--  <ImageView
+         android:id="@+id/simpel"
+         android:layout_width="match_parent"
+         android:layout_height="40dp"
+         android:background="@color/bg_screen5"
+         />
+     <ImageView
+         android:layout_width="match_parent"
+         android:layout_height="40dp"
+         android:layout_below="@id/simpel"
+         android:background="#f7ecec"
+         />
+     <TextView
+         android:text="SiMPEL"
+         android:id="@+id/tvSimpel"
+         android:textSize="18dp"
+         android:textStyle="bold"
+         android:textColor="#eef2f2"
+         android:layout_margin="10dp"
+         android:layout_centerHorizontal="true"
+         android:gravity="center"
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+     <TextView
+         android:text="Dedi Kurniawan, A.Md.T"
+         android:gravity="left"
+         android:textSize="15dp"
+         android:layout_below="@id/tvSimpel"
+         android:textStyle="bold"
+     android:layout_margin="10dp"
+         android:textColor="@color/bg_screen5"
+         android:id="@+id/tvNama"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content" />
+     <ScrollView
+         android:layout_below="@id/tvNama"
+         android:layout_width="match_parent"
+         android:layout_height="match_parent">
+         <LinearLayout
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             android:orientation="vertical"
+             android:gravity="center"
+             android:padding="10dp"
+             >
+             <LinearLayout
+                 android:clipToPadding="false"
+                 android:gravity="center"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+                 <android.support.v7.widget.CardView
+                     android:foreground="?android:attr/selectableItemBackground"
+                     android:clickable="true"
+                     android:id="@+id/SuratMasukId"
+                     android:layout_width="160dp"
+                     android:layout_height="190dp"
+                     android:layout_margin="10dp">
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="vertical"
+                         android:gravity="center">
+                         <ImageView
+                             android:layout_width="64dp"
+                             android:layout_height="64dp"
+                             android:background="@drawable/cercleshapesuratmasuk"
+                             android:src="@drawable/ic_action_surat_masuk"
+                             android:padding="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:textStyle="bold"
+                             android:layout_marginTop="10dp"
+                             android:text="Surat Masuk"/>
+                         <View
+                             android:layout_width="match_parent"
+                             android:layout_height="1dp"
+                             android:background="@color/lightgray"
+                             android:layout_margin="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:gravity="center"
+                             android:text="Periksa Surat Masuk Anda"
+                             android:padding="5dp"
+                             android:textColor="@android:color/darker_gray"/>
 
-        android:id="@+id/tvJabatan"
+                     </LinearLayout>
+                 </android.support.v7.widget.CardView>
+                 <android.support.v7.widget.CardView
+                     android:foreground="?android:attr/selectableItemBackground"
+                     android:clickable="true"
+                     android:layout_width="160dp"
+                     android:id="@+id/SuratKeluarId"
+                     android:layout_height="190dp"
+                     android:layout_margin="10dp">
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="vertical"
+                         android:gravity="center">
+                         <ImageView
+                             android:layout_width="64dp"
+                             android:layout_height="64dp"
+                             android:background="@drawable/cerclesuratkeluar"
+                             android:src="@drawable/ic_action_suratkeluar"
+                             android:padding="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:textStyle="bold"
+                             android:layout_marginTop="10dp"
+                             android:text="Surat Keluar"/>
+                         <View
+                             android:layout_width="match_parent"
+                             android:layout_height="1dp"
+                             android:background="@color/lightgray"
+                             android:layout_margin="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:gravity="center"
+                             android:text="Periksa Surat Keluar Anda"
+                             android:padding="5dp"
+                             android:textColor="@android:color/darker_gray"/>
 
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+                     </LinearLayout>
+                 </android.support.v7.widget.CardView>
 
-    <android.support.v7.widget.CardView
-        android:layout_marginTop="120dp"
-        android:id="@+id/cvSuratMasuk"
-        android:layout_centerHorizontal="true"
+             </LinearLayout>
+             <LinearLayout
+                 android:clipToPadding="false"
+                 android:gravity="center"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+                 <android.support.v7.widget.CardView
+                     android:foreground="?android:attr/selectableItemBackground"
+                     android:clickable="true"
+                     android:id="@+id/DisposisiMasukId"
+                     android:layout_width="160dp"
+                     android:layout_height="190dp"
+                     android:layout_margin="10dp">
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="vertical"
+                         android:gravity="center">
+                         <ImageView
+                             android:layout_width="64dp"
+                             android:layout_height="64dp"
+                             android:background="@drawable/cercleshapesuratmasuk"
+                             android:src="@drawable/ic_action_disposisi_masuk2"
+                             android:padding="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:textStyle="bold"
+                             android:layout_marginTop="10dp"
+                             android:text="Disposisi Masuk"/>
+                         <View
+                             android:layout_width="match_parent"
+                             android:layout_height="1dp"
+                             android:background="@color/lightgray"
+                             android:layout_margin="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:gravity="center"
+                             android:text="Periksa Disposisi Masuk Anda"
+                             android:padding="5dp"
+                             android:textColor="@android:color/darker_gray"/>
 
-        android:layout_marginLeft="30dp"
-        android:layout_width="200dp"
-        app:cardCornerRadius="13dp"
-        android:layout_height="100dp">
-        <TextView
-            android:id="@+id/jumlah_suratmasuk"
-            android:text="SURAT MASUK : "
-            android:textSize="20dp"
-            android:layout_gravity="center"
+                     </LinearLayout>
+                 </android.support.v7.widget.CardView>
+                 <android.support.v7.widget.CardView
+                     android:foreground="?android:attr/selectableItemBackground"
+                     android:clickable="true"
+                     android:layout_width="160dp"
+                     android:layout_height="190dp"
+                     android:id="@+id/DisposisiKeluarId"
+                     android:layout_margin="10dp">
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="vertical"
+                         android:gravity="center">
+                         <ImageView
+                             android:layout_width="64dp"
+                             android:layout_height="64dp"
+                             android:background="@drawable/cerclesuratkeluar"
+                             android:src="@drawable/ic_action_disposisikeluar"
+                             android:padding="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:textStyle="bold"
+                             android:layout_marginTop="10dp"
+                             android:text="Disposisi Keluar"/>
+                         <View
+                             android:layout_width="match_parent"
+                             android:layout_height="1dp"
+                             android:background="@color/lightgray"
+                             android:layout_margin="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:gravity="center"
+                             android:text="Periksa Disposisi Keluar Anda"
+                             android:padding="5dp"
+                             android:textColor="@android:color/darker_gray"/>
+
+                     </LinearLayout>
+                 </android.support.v7.widget.CardView>
+
+             </LinearLayout>
+             <LinearLayout
+                 android:clipToPadding="false"
+                 android:gravity="center"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+                 <android.support.v7.widget.CardView
+                     android:foreground="?android:attr/selectableItemBackground"
+                     android:clickable="true"
+                     android:id="@+id/TembusanId"
+                     android:layout_width="160dp"
+                     android:layout_height="190dp"
+                     android:layout_margin="10dp">
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="vertical"
+                         android:gravity="center">
+                         <ImageView
+                             android:layout_width="64dp"
+                             android:layout_height="64dp"
+                             android:background="@drawable/cercleshapesuratmasuk"
+                             android:src="@drawable/ic_action_tembusan"
+                             android:padding="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:textStyle="bold"
+                             android:layout_marginTop="10dp"
+                             android:text="Tembusan"/>
+                         <View
+                             android:layout_width="match_parent"
+                             android:layout_height="1dp"
+                             android:background="@color/lightgray"
+                             android:layout_margin="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:gravity="center"
+                             android:text="Periksa Surat Tembusan Anda"
+                             android:padding="5dp"
+                             android:textColor="@android:color/darker_gray"/>
+
+                     </LinearLayout>
+                 </android.support.v7.widget.CardView>
+                 <android.support.v7.widget.CardView
+                     android:foreground="?android:attr/selectableItemBackground"
+                     android:clickable="true"
+                     android:layout_width="160dp"
+                     android:layout_height="190dp"
+                     android:id="@+id/KonsepId"
+                     android:layout_margin="10dp">
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="vertical"
+                         android:gravity="center">
+                         <ImageView
+                             android:layout_width="64dp"
+                             android:layout_height="64dp"
+                             android:background="@drawable/cerclesuratkeluar"
+                             android:src="@drawable/ic_action_konsep"
+                             android:padding="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:textStyle="bold"
+                             android:layout_marginTop="10dp"
+                             android:text="Konsep"/>
+                         <View
+                             android:layout_width="match_parent"
+                             android:layout_height="1dp"
+                             android:background="@color/lightgray"
+                             android:layout_margin="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:gravity="center"
+                             android:text="Periksa Surat Konsep Anda"
+                             android:padding="5dp"
+                             android:textColor="@android:color/darker_gray"/>
+
+                     </LinearLayout>
+                 </android.support.v7.widget.CardView>
+
+             </LinearLayout>
+
+             <LinearLayout
+                 android:clipToPadding="false"
+                 android:gravity="center"
+                 android:orientation="horizontal"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content">
+                 <android.support.v7.widget.CardView
+                     android:foreground="?android:attr/selectableItemBackground"
+                     android:clickable="true"
+                     android:id="@+id/DisposisiTembusanId"
+                     android:layout_width="160dp"
+                     android:layout_height="190dp"
+                     android:layout_margin="10dp">
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="vertical"
+                         android:gravity="center">
+                         <ImageView
+                             android:layout_width="64dp"
+                             android:layout_height="64dp"
+                             android:background="@drawable/cercleshapesuratmasuk"
+                             android:src="@drawable/ic_action_disposisi_tembusan"
+                             android:padding="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:textStyle="bold"
+                             android:layout_marginTop="10dp"
+                             android:text="Disposisi Tembusan"/>
+                         <View
+                             android:layout_width="match_parent"
+                             android:layout_height="1dp"
+                             android:background="@color/lightgray"
+                             android:layout_margin="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:gravity="center"
+                             android:text="Periksa Disposisi Tembusan Anda"
+                             android:padding="5dp"
+                             android:textColor="@android:color/darker_gray"/>
+
+                     </LinearLayout>
+                 </android.support.v7.widget.CardView>
+                 <android.support.v7.widget.CardView
+                     android:foreground="?android:attr/selectableItemBackground"
+                     android:clickable="true"
+                     android:layout_width="160dp"
+                     android:id="@+id/TandaTanganId"
+                     android:layout_height="190dp"
+                     android:layout_margin="10dp">
+                     <LinearLayout
+                         android:layout_width="match_parent"
+                         android:layout_height="match_parent"
+                         android:orientation="vertical"
+                         android:gravity="center">
+                         <ImageView
+                             android:layout_width="64dp"
+                             android:layout_height="64dp"
+                             android:background="@drawable/cerclesuratkeluar"
+                             android:src="@drawable/ic_action_tandatangan"
+                             android:padding="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:textStyle="bold"
+                             android:layout_marginTop="10dp"
+                             android:text="Tanda Tangan Surat"/>
+                         <View
+                             android:layout_width="match_parent"
+                             android:layout_height="1dp"
+                             android:background="@color/lightgray"
+                             android:layout_margin="10dp"/>
+                         <TextView
+                             android:layout_width="wrap_content"
+                             android:layout_height="wrap_content"
+                             android:gravity="center"
+                             android:text="Periksa Tanda Tangan Surat Anda"
+                             android:padding="5dp"
+                             android:textColor="@android:color/darker_gray"/>
+
+                     </LinearLayout>
+                 </android.support.v7.widget.CardView>
+
+             </LinearLayout>
+         </LinearLayout>
 
 
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </android.support.v7.widget.CardView>
-    <android.support.v7.widget.CardView
-        android:layout_marginTop="30dp"
-        android:id="@+id/cvSuratDisposisiMasuk"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
+     </ScrollView>
+
+
+
+
+
+     <TextView
+         android:text=""
+         android:gravity="center"
+         android:textSize="15dp"
+         android:layout_marginTop="10dp"
+         android:layout_below="@id/tvNama"
+         android:textStyle="bold"
+         android:textColor="#eef2f2"
+
+         android:id="@+id/tvJabatan"
+
+         android:layout_width="match_parent"
+         android:layout_height="wrap_content" />
+
+     <android.support.v7.widget.CardView
+         android:layout_marginTop="100dp"
+         android:id="@+id/cvSuratMasuk"
+
+         android:layout_centerHorizontal="true"
+
+         android:layout_width="150dp"
+         app:cardCornerRadius="13dp"
+         android:layout_height="100dp">
+         <TextView
+             android:id="@+id/jumlah_suratmasuk"
+             android:text="Surat Masuk : "
+             android:textSize="20dp"
+             android:layout_margin="10dp"
+             android:layout_gravity="center"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+     </android.support.v7.widget.CardView>
+     <android.support.v7.widget.CardView
+         android:layout_marginTop="20dp"
+         android:layout_centerHorizontal="true"
+         android:id="@+id/cvSuratDisposisiMasuk"
+
         android:layout_below="@id/cvSuratMasuk"
-        android:layout_width="200dp"
-        app:cardCornerRadius="13dp"
-        android:layout_height="100dp">
-        <TextView
-            android:id="@+id/jumlah_disposisimasuk"
-            android:text="DISPOSISI MASUK : "
-            android:textSize="18dp"
+         android:layout_width="150dp"
+         app:cardCornerRadius="13dp"
+         android:layout_height="100dp">
+         <TextView
+             android:id="@+id/jumlah_disposisimasuk"
+             android:text="Disposisi Masuk : "
+             android:textSize="18dp"
+             android:layout_margin="10dp"
+             android:layout_gravity="center"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+     </android.support.v7.widget.CardView>
+     <android.support.v7.widget.CardView
+         android:layout_marginTop="20dp"
+         android:id="@+id/cvSuratDisposisiKeluar"
 
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </android.support.v7.widget.CardView>
-    <android.support.v7.widget.CardView
-        android:layout_marginTop="30dp"
-        android:id="@+id/cvSuratDisposisiKeluar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30dp"
-        android:layout_width="200dp"
-        app:cardCornerRadius="13dp"
-        android:layout_below="@id/cvSuratDisposisiMasuk"
-        android:layout_height="100dp">
-        <TextView
-            android:id="@+id/jumlah_disposisikeluar"
-            android:text=" DISPOSISI KELUAR : "
-            android:textSize="18dp"
+         android:layout_marginLeft="30dp"
+         android:layout_width="150dp"
+         app:cardCornerRadius="13dp"
+         android:layout_below="@id/cvSuratDisposisiMasuk"
+         android:layout_centerHorizontal="true"
+         android:layout_height="100dp">
+         <TextView
+             android:id="@+id/jumlah_disposisikeluar"
+             android:text="Konsep : "
+             android:textSize="18dp"
+             android:layout_margin="10dp"
+             android:layout_gravity="center"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+     </android.support.v7.widget.CardView>
+     <android.support.v7.widget.CardView
+         android:layout_marginTop="20dp"
+         android:id="@+id/cvTTD"
 
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </android.support.v7.widget.CardView>
+         android:layout_marginLeft="30dp"
+         android:layout_width="150dp"
+         app:cardCornerRadius="13dp"
+         android:layout_below="@id/cvSuratDisposisiKeluar"
+         android:layout_centerHorizontal="true"
+         android:layout_height="100dp">
+         <TextView
+             android:id="@+id/jumlah_TTD"
+             android:layout_margin="10dp"
+             android:text="Tanda Tangan Surat : "
+             android:textSize="18dp"
+
+             android:layout_gravity="center"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content" />
+     </android.support.v7.widget.CardView>-->
 </RelativeLayout>

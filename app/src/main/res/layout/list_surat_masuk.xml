@@ -156,6 +156,7 @@
                     android:gravity="center"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
+                    android:background="@color/black_sub"
                     android:text=""/>
             </LinearLayout>
         </LinearLayout>
