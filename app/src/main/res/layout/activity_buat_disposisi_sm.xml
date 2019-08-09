@@ -1,0 +1,501 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.egov.win10.simpelv.BuatDisposisiSM">
+
+    <ScrollView
+        android:id="@+id/scrollBuatDisposisiMasuk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Informasi Disposisi Masuk"
+                android:textSize="20dp" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvInformasiSurat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/bg_screen5"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Nomor Surat : "
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/tv_hasil_nomor_surat_BDMSM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Tujuan : "
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/tv_hasil_tujuan_BDMSM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="             "
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/tv_hasil_nama_jabatan_penerima_BDMSM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvInformasiSurat2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+
+                app:cardBackgroundColor="@color/bg_screen5"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Tanggal Surat : "
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/tv_hasil_tanggal_surat_BDMSM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Pengirim : "
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/tv_hasil_pengirim_BDMSM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Jenis Nota Dinas : "
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/tv_hasil_jenis_nota_dinas_BDMSM"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:text="Formulir Disposisi"
+                android:textSize="20dp" />
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvIsiSurat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+
+                app:cardBackgroundColor="@color/bg_screen5"
+                app:cardCornerRadius="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Penerima Disposisi : "
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <fr.ganfra.materialspinner.MaterialSpinner
+                            android:id="@+id/spinnerPenerimaDisposisiSM"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            app:ms_arrowColor="#0000FF"
+
+                            app:ms_arrowSize="15dp"
+                            app:ms_floatingLabelColor="#b33e3e"
+                            app:ms_hint=" "
+                            app:ms_hintColor="#000000"
+                            app:ms_multiline="true" />
+
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TableRow>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="20dp"
+                                    android:text="Nama"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="20dp"
+                                    android:text="Jabatan"
+                                    android:textColor="@color/white"
+                                    android:textStyle="bold" />
+
+                            </TableRow>
+
+                            <TableRow>
+
+                                <TextView
+                                    android:id="@+id/textViewNamaSM"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:layout_marginRight="20dp"
+                                    android:textColor="@color/white" />
+
+                                <TextView
+                                    android:id="@+id/textViewJabatanSM"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="20dp"
+                                    android:textColor="@color/white" />
+
+                            </TableRow>
+                        </TableLayout>
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="Penerima Disposisi 2 : "
+                            android:textSize="12dp" android:textColor="@color/white"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <fr.ganfra.materialspinner.MaterialSpinner
+                            android:id="@+id/spinnerPenerimaDisposisiSM2"
+                            app:ms_arrowColor="#0000FF"
+                            app:ms_arrowSize="15dp"
+                            app:ms_floatingLabelColor="#b33e3e"
+                            app:ms_hint=" "
+
+                            app:ms_hintColor="#000000"
+                            app:ms_multiline="true"
+                            android:layout_width="match_parent"
+                            android:layout_margin="5dp"
+                            android:layout_height="wrap_content"/>
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TableRow>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold" android:textColor="@color/white"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="Nama"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:textStyle="bold" android:textColor="@color/white"
+                                    android:layout_marginRight="20dp"
+                                    android:text="Jabatan"
+                                    />
+
+                            </TableRow>
+                            <TableRow>
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="20dp"
+                                    android:layout_marginLeft="10dp" android:textColor="@color/white"
+                                    android:id="@+id/textViewNamaSM2"
+                                    />
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginRight="20dp" android:textColor="@color/white"
+                                    android:id="@+id/textViewJabatanSM2"
+                                    />
+
+                            </TableRow>
+                        </TableLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Instruksi : "
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <fr.ganfra.materialspinner.MaterialSpinner
+                            android:id="@+id/spinnerInstruksiSM"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            app:ms_arrowColor="#0000FF"
+
+                            app:ms_arrowSize="15dp"
+                            app:ms_floatingLabelColor="#b33e3e"
+                            app:ms_hint=" "
+                            app:ms_hintColor="#000000"
+                            app:ms_multiline="true" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Jam : "
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <EditText
+
+                            android:id="@+id/editWaktuSM"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toEndOf="@+id/tanggal"
+                            android:hint="Silahkan diisi jam jika instruksinya dihadiri "
+                            android:text=""
+                            android:textColorHint="@color/white"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Tanggal Selesai : "
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <EditText
+                            android:id="@+id/editTanggalSelesaiSM"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginRight="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_toEndOf="@+id/tanggal"
+                            android:hint=""
+                            android:text=""
+                            android:textColorHint="@color/white"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="Isi Disposisi : "
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <EditText
+
+                            android:id="@+id/editIsiDisposisiSM"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:gravity="top|left"
+                            android:inputType="textMultiLine"
+                            android:lines="6"
+                            android:overScrollMode="always"
+                            android:scrollHorizontally="false"
+                            android:scrollbarStyle="insideInset"
+                            android:scrollbars="vertical"
+                            android:textAppearance="?android:attr/textAppearanceMedium"
+                            android:textColor="@color/white"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/btnKirimSuratSMSM"
+                            android:layout_width="wrap_content"
+
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:text="Kirim Surat" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>

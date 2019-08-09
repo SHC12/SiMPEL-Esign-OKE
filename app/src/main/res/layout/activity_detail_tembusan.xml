@@ -1,0 +1,280 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.egov.win10.simpelv.DetailTembusan">
+    <ScrollView
+
+
+        android:id="@+id/scrollDisposisiMasuk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent"
+            >
+
+            <TextView
+                android:text="Informasi Surat Tembusan Masuk"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvInformasiSurat"
+                app:cardCornerRadius="20dp"
+                app:cardBackgroundColor="@color/bg_screen5"
+                android:layout_margin="10dp"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="Nomor Agenda Surat Masuk : "
+                            android:textSize="12dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/white"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_hasil_nomor_agenda_surat_masuk_tembusan2"
+                            android:text=""
+                            android:textSize="12dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/white"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="Nomor Surat : "
+                            android:textSize="12dp"
+                            android:layout_marginTop="10dp"
+                            android:textColor="@color/white"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_hasil_nomor_surat_tembusan2"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:textColor="@color/white"
+                            android:layout_marginTop="10dp"
+                            android:text="Tujuan : "
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/tv_hasil_tujuan_surat_tembusan2"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:text="             "
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+
+                        <TextView
+                            android:id="@+id/tv_hasil_nama_jabatan_penerima_surat_tembusan2"
+                            android:textColor="@color/white"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:textSize="12dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvInformasiSurat2"
+                app:cardCornerRadius="20dp"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/bg_screen5"
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="Tanggal Surat : "
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_hasil_tanggal_surat_tembusan"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="Pengirim : "
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_hasil_pengirim_surat_tembusan2"
+                            android:textColor="@color/white"
+                            android:layout_marginBottom="10dp"
+                            android:textSize="12dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="Jenis Nota Dinas : "
+                            android:textSize="12dp"
+                            android:textColor="@color/white"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_hasil_jenis_nota_dinas_surat_tembusan2"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <TextView
+                android:text="Isi Surat"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="10dp"
+                android:textSize="20dp"
+                android:layout_width="match_parent"
+
+                android:layout_height="wrap_content" />
+            <android.support.v7.widget.CardView
+                android:id="@+id/cvIsiSurat"
+                app:cardCornerRadius="20dp"
+                android:layout_margin="10dp"
+                app:cardBackgroundColor="@color/bg_screen5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <TextView
+                            android:text="Judul Surat : "
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                        <TextView
+                            android:id="@+id/tv_hasil_judul_surat_tembusan2"
+                            android:textColor="@color/white"
+                            android:textSize="12dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <Button
+                            android:text="Buka Surat"
+                            android:id="@+id/btnBukaSuratSuratTembusan"
+                            android:onClick="download"
+
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+
+</RelativeLayout>
