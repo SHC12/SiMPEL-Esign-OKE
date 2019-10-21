@@ -3,19 +3,24 @@ package com.egov.win10.simpelv.list;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.egov.win10.simpelv.R;
+import com.egov.win10.simpelv.TU.DetailSuratMasukTU;
 import com.egov.win10.simpelv.adapter.AdapterSignature;
 import com.egov.win10.simpelv.data.DataSignature;
 
@@ -29,7 +34,10 @@ public class ListTandaTanganSurat extends AppCompatActivity {
 
 
     private String URL = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/model_signature.php?id_user=";
+    private String url_get_nik = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/get_nik_esign.php?id_user=";
+
     private String URL_SIGNATURE = "";
+    private String URL_NIK = "";
     String id_user = "";
     String id_instansi = "";
     String id_jenjang_jabatan = "";
@@ -39,6 +47,8 @@ public class ListTandaTanganSurat extends AppCompatActivity {
 
     Button btnLogout;
     TextView txtPesanPersonal;
+
+    String nik;
 
 
     private LinearLayoutManager linearLayoutManager;
@@ -53,6 +63,9 @@ public class ListTandaTanganSurat extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list_tanda_tangan_surat);
+
+
+
 
         rv = (RecyclerView)findViewById(R.id.rvSignature);
         linearLayoutManager = new LinearLayoutManager(this);
@@ -74,6 +87,7 @@ public class ListTandaTanganSurat extends AppCompatActivity {
 
         //URL_SIGNATURE = URL+id_user+"&id_instansi="+id_instansi+"&id_jenjang_jabatan="+id_jenjang_jabatan;
         URL_SIGNATURE = URL+id_user+"&id_instansi="+id_instansi;
+        URL_NIK  = url_get_nik + id_user;
 
 
         //  Toast.makeText(getActivity(), ""+URL_SIGNATURE, Toast.LENGTH_SHORT).show();
@@ -93,7 +107,7 @@ public class ListTandaTanganSurat extends AppCompatActivity {
         txtPesanPersonal = (TextView)findViewById(R.id.tvNamaPersonal);
 
         txtPesanPersonal.setText(cookieName);
-
+        Ambil_NIK();
 
 
     }
@@ -166,5 +180,42 @@ public class ListTandaTanganSurat extends AppCompatActivity {
         });
 
         Volley.newRequestQueue(this).add(jsonArrayRequest);
+    }
+
+    public void Ambil_NIK(){
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL_NIK, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+
+                    JSONArray jsonArray = object.getJSONArray("result");
+
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        nik = jsonObject.getString("nik");
+                        SharedPreferences settings = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putString("nik", nik);
+
+
+                        //Toast.makeText(ListTandaTanganSurat.this, "id_penerima"+nik, Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        Volley.newRequestQueue(this).add(stringRequest);
+
     }
 }

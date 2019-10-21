@@ -5,13 +5,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.CardView;
+import android.os.Environment;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -20,6 +22,14 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.DownloadListener;
+import com.androidnetworking.interfaces.DownloadProgressListener;
+import com.androidnetworking.interfaces.JSONArrayRequestListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.egov.win10.simpelv.TTD.DaftarTTD;
 import com.egov.win10.simpelv.TU.ListAgendaKeluar;
 import com.egov.win10.simpelv.TU.ListAgendaMasuk;
 import com.egov.win10.simpelv.TU.ListSuratMasukTU;
@@ -30,14 +40,25 @@ import com.egov.win10.simpelv.list.ListSuratKeluar;
 import com.egov.win10.simpelv.list.ListSuratMasuk;
 import com.egov.win10.simpelv.list.ListTandaTanganSurat;
 import com.egov.win10.simpelv.list.ListTembusan;
+import com.google.gson.JsonObject;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.DataInputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
     private String url_get_token = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/fcm_insert.php";
-
 
 
     String gcm_instance = " ";
@@ -61,14 +82,30 @@ public class MainActivity extends AppCompatActivity {
     CardView cvDisposisiKeluar;
     CardView cvKonsep;
     CardView cvTandaTangan;
+    CardView cvDaftarTTD;
 
     String id_groups;
     String id_kategori;
 
     TextView pesan;
 
+    String nik;
+    private String url_get_nik = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/get_nik_esign.php?id_user=";
+    private String URL_NIK = "";
 
-    private BottomNavigationView bottomNavigationView;
+    String URL_IMG_TTD = "http://simpel.pasamanbaratkab.go.id/";
+    String dirPath = ("upload/img_sign/");
+    String fileName = "";
+
+    String URL_FILE_SIGN = "";
+    String FILE_NAME;
+
+    private String URL_VERIF_USER = "http://103.124.89.212/api/user/status/";
+    private String API_VERIF_USER = "";
+
+    String get_nik;
+    int stat_code;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -79,13 +116,24 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+
+
+
+
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = settings.edit();
+        editor.putString("nik", nik);
         SharedPreferences mSettings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         String cookieName = settings.getString("message", "default");
         id_kategori = settings.getString("id_kategori", "default");
         id_groups = settings.getString("id_groups", "default");
+        id_user = settings.getString("id_user", "default");
+
+        URL_NIK  = url_get_nik + id_user;
 
 
+        URL_FILE_SIGN = "http://simpel.pasamanbaratkab.go.id/upload/img_sign/"+id_user+".jpg";
+        FILE_NAME = id_user+".jpg";
 
         if(id_kategori.equals("4") && id_groups.equals("4") ){
             setContentView(R.layout.activity_main_tu);
@@ -176,6 +224,13 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Intent in = new Intent(MainActivity.this, ListTandaTanganSurat.class);
+                    Ambil_NIK();
+                    new Thread(new Runnable() {
+                        public void run() {
+                            DownloadFilesIMG();
+
+                        }
+                    }).start();
                     startActivity(in);
                 }
             });
@@ -210,6 +265,14 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
 
+            cvDaftarTTD = (CardView) findViewById(R.id.DaftarTTD);
+            cvDaftarTTD.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent in = new Intent(MainActivity.this, DaftarTTD.class);
+                    startActivity(in);
+                }
+            });
 
 
             String cekLogin = "";
@@ -227,8 +290,8 @@ public class MainActivity extends AppCompatActivity {
 
             getToken();
 
-
-
+            download_sign_image();
+            Ambil_NIK();
         }
 
 
@@ -237,6 +300,104 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void DownloadFilesIMG() {
+
+        try {
+            java.net.URL u = new URL(URL_FILE_SIGN);
+            InputStream is = u.openStream();
+
+            DataInputStream dis = new DataInputStream(is);
+
+            byte[] buffer = new byte[1024];
+            int length;
+
+            FileOutputStream fos = new FileOutputStream(new File(Environment.getExternalStorageDirectory() + "/" + FILE_NAME));
+
+            while ((length = dis.read(buffer)) > 0) {
+                fos.write(buffer, 0, length);
+            }
+
+
+
+
+        } catch (MalformedURLException mue) {
+            Log.e("SYNC getUpdate", "malformed url error", mue);
+        } catch (IOException ioe) {
+            Log.e("SYNC getUpdate", "io error", ioe);
+        } catch (SecurityException se) {
+            Log.e("SYNC getUpdate", "security error", se);
+        }
+    }
+
+    public void download_sign_image(){
+        AndroidNetworking.download(URL_IMG_TTD,dirPath,fileName)
+                .setTag("downloadTest")
+                .setPriority(Priority.MEDIUM)
+                .build()
+                .setDownloadProgressListener(new DownloadProgressListener() {
+                    @Override
+                    public void onProgress(long bytesDownloaded, long totalBytes) {
+                        // do anything with progress
+                    }
+                })
+                .startDownload(new DownloadListener() {
+                    @Override
+                    public void onDownloadComplete() {
+                        // do anything after completion
+                      //  Toast.makeText(MainActivity.this, ""+ Environment.getExternalStorageDirectory() + "/" + fileName, Toast.LENGTH_SHORT).show();
+                    }
+                    @Override
+                    public void onError(ANError error) {
+                      //  Toast.makeText(MainActivity.this, ""+error.getErrorDetail(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+    }
+
+    public void Ambil_NIK(){
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, URL_NIK, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try {
+                    JSONObject object = new JSONObject(response);
+
+                    JSONArray jsonArray = object.getJSONArray("result");
+
+
+                    for (int i = 0; i < jsonArray.length(); i++) {
+
+                        JSONObject jsonObject = jsonArray.getJSONObject(i);
+                        nik = jsonObject.getString("nik");
+
+
+
+
+                        SharedPreferences settings = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor = settings.edit();
+                        editor.putString("nik", nik);
+                    //    editor.putString("stat_code", stat_code);
+                        editor.commit();
+                        //Toast.makeText(MainActivity.this, ""+stat_code, Toast.LENGTH_SHORT).show();
+                       // Toast.makeText(MainActivity.this, ""+nik, Toast.LENGTH_SHORT).show();
+                    //    Toast.makeText(MainActivity.this, "NIK "+nik, Toast.LENGTH_SHORT).show();
+
+
+                        //Toast.makeText(ListTandaTanganSurat.this, "id_penerima"+nik, Toast.LENGTH_SHORT).show();
+
+                    }
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        });
+        Volley.newRequestQueue(this).add(stringRequest);
+
+    }
     @Override
     public void onBackPressed() {
         new AlertDialog.Builder(this)

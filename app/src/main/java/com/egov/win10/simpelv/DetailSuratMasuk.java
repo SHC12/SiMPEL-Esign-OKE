@@ -9,13 +9,14 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Environment;
 import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -24,6 +25,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.egov.win10.simpelv.TTD.DaftarTTD;
 import com.github.clans.fab.FloatingActionButton;
 
 import org.json.JSONArray;
@@ -47,6 +53,7 @@ public class DetailSuratMasuk extends AppCompatActivity {
     public static final String PREFS_NAME = "MyPrefsFile";
 
     private String Url = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/model_detail_surat_masuk.php?token_surat=";
+    private String URL_VERIF_TTD = "http://103.124.89.212/api/sign/verify";
     private String api_pdf_surat_masuk = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/get_file_pdf_disposisi_masuk.php?id_surat=";
     private String READ_SM = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/update_read_surat_masuk.php?id_surat=";
     public String url_pdf_surat_masuk = "";
@@ -71,6 +78,7 @@ public class DetailSuratMasuk extends AppCompatActivity {
     String id_user;
 
     private FloatingActionButton fab;
+    private FloatingActionButton fabVerif;
     Intent intent;
     private ProgressDialog progressDialog;
     Button btnBukaSuratSM;
@@ -79,9 +87,14 @@ public class DetailSuratMasuk extends AppCompatActivity {
 
     String token_disposisi;
 
+    File signed_file;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+
 
 
 
@@ -115,6 +128,7 @@ public class DetailSuratMasuk extends AppCompatActivity {
         hasilTanggalPenerimaanSM.setText(tgl_surat_masuk);
 
         tgl_surat = getIntent().getStringExtra("tanggal_surat");
+
         fab = (FloatingActionButton) findViewById(R.id.fabBuatDisposisi_SM);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -131,6 +145,17 @@ public class DetailSuratMasuk extends AppCompatActivity {
                 in.putExtra("jenis_nota_dinas", nama_naskah);
 
                 startActivity(in);
+            }
+        });
+        fabVerif = (FloatingActionButton) findViewById(R.id.fabVerifikasiTTD_SM);
+        fabVerif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                //Toast.makeText(DetailSuratMasuk.this, ""+Environment.getExternalStorageDirectory() + "/" + nama_surat, Toast.LENGTH_SHORT).show();
+
+                VerifTTD();
+
             }
         });
 
@@ -215,6 +240,49 @@ public class DetailSuratMasuk extends AppCompatActivity {
 
     }
 
+    public void VerifTTD(){
+
+        signed_file = new File(Environment.getExternalStorageDirectory() + "/" + nama_surat);
+
+        AndroidNetworking.upload(URL_VERIF_TTD)
+                .addMultipartFile("signed_file", signed_file)
+                .setTag("Registrasi")
+                .setPriority(Priority.HIGH)
+                .addHeaders("Authorization", "Basic YnNyZTpzZWN1cmV0cmFuc2FjdGlvbnMhISE=")
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        if (response != null) {
+                            try {
+                                String responseString = response.get("notes").toString();
+
+
+                                if(responseString.equals("null")){
+                                    Toast.makeText(DetailSuratMasuk.this, "Dokumen tidak dapat diverifikasi", Toast.LENGTH_SHORT).show();
+                                }else {
+                                    Toast.makeText(DetailSuratMasuk.this, "" + responseString, Toast.LENGTH_SHORT).show();
+                                }
+
+
+
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Toast.makeText(DetailSuratMasuk.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        anError.printStackTrace();
+                        Toast.makeText(DetailSuratMasuk.this, "ERROR : " + anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
+                        Log.e("ERROR  : ", ""+anError.getErrorDetail());
+                    }
+                });
+
+    }
 
     public void readSuratMasuk(){
 

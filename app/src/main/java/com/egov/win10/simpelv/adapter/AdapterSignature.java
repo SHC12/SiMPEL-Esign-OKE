@@ -3,16 +3,18 @@ package com.egov.win10.simpelv.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.widget.CardView;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import androidx.cardview.widget.CardView;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.egov.win10.simpelv.DetailSignature;
 import com.egov.win10.simpelv.R;
+import com.egov.win10.simpelv.TTD.PassPhrase;
 import com.egov.win10.simpelv.data.DataSignature;
 
 import java.util.ArrayList;
@@ -147,7 +149,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
                     Intent intent = new Intent();
                     switch (getAdapterPosition()) {
                         case 0:
-                            intent = new Intent(context, DetailSignature.class);
+                            intent = new Intent(context, PassPhrase.class);
 
 
 
@@ -182,7 +184,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 1:
-                            intent = new Intent(context, DetailSignature.class);
+                            intent = new Intent(context, PassPhrase.class);
 
 
 
@@ -218,7 +220,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 2:
-                            intent = new Intent(context, DetailSignature.class);
+                            intent = new Intent(context, PassPhrase.class);
 
 
 
@@ -256,7 +258,40 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 3:
-                            intent = new Intent(context, DetailSignature.class);
+                            intent = new Intent(context, PassPhrase.class);
+
+
+
+                            intent.putExtra("nama_tujuan", nama_tujuan);
+                            intent.putExtra("nama_pengirim", nama_pengirim);
+                            intent.putExtra("judul_surat", perihal_surat);
+                            intent.putExtra("nomor_surat", nomor_surat);
+                            intent.putExtra("no_agenda_surat_keluar", no_agenda_surat_keluar);
+                            intent.putExtra("tanggal_surat", tgl_surat);
+                            intent.putExtra("tanggal_surat_format", tgl_surat_format);
+                            intent.putExtra("jenis_nota_dinas", nama_naskah);
+
+
+                            intent.putExtra("nama_tembusan", nama_tembusan);
+                            intent.putExtra("data1", data1);
+
+
+
+
+
+                            intent.putExtra("id_surat", id_surat);
+                            intent.putExtra("id_instansi", id_instansi);
+                            intent.putExtra("token_surat", token_surat);
+
+
+
+
+
+                            //intent.putExtra("token_disposisi", no_surat);
+
+                            break;
+                        case 4:
+                            intent = new Intent(context, PassPhrase.class);
 
 
 
@@ -289,7 +324,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 5:
-                            intent = new Intent(context, DetailSignature.class);
+                            intent = new Intent(context, PassPhrase.class);
 
 
 
@@ -323,7 +358,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 6:
-                            intent = new Intent(context, DetailSignature.class);
+                            intent = new Intent(context, PassPhrase.class);
 
 
 
@@ -357,7 +392,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 7:
-                            intent = new Intent(context, DetailSignature.class);
+                            intent = new Intent(context, PassPhrase.class);
 
 
 
@@ -393,7 +428,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 8:
-                            intent = new Intent(context, DetailSignature.class);
+                            intent = new Intent(context, PassPhrase.class);
 
 
 

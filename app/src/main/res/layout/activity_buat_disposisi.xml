@@ -26,7 +26,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
 
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cvInformasiSurat"
                 app:cardBackgroundColor="@color/bg_screen5"
                 app:cardCornerRadius="20dp"
@@ -109,8 +109,8 @@
                     </LinearLayout>
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cvInformasiSurat2"
                 app:cardCornerRadius="20dp"
                 app:cardBackgroundColor="@color/bg_screen5"
@@ -187,7 +187,7 @@
                     </LinearLayout>
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
             <TextView
                 android:text="Formulir Disposisi"
                 android:layout_marginLeft="10dp"
@@ -195,7 +195,7 @@
                 android:textSize="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cvIsiSurat"
                 app:cardBackgroundColor="@color/bg_screen5"
                 app:cardCornerRadius="20dp"
@@ -450,7 +450,7 @@ android:textColorHint="@color/white"
 
                 </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
         </LinearLayout>
 
     </ScrollView>

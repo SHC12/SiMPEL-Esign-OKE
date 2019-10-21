@@ -27,7 +27,7 @@
                 android:textSize="20dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cvInformasiSurat"
                 app:cardCornerRadius="20dp"
                 app:cardBackgroundColor="@color/bg_screen5"
@@ -132,8 +132,8 @@
                             android:textSize="12dp" />
                     </LinearLayout>
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cvInformasiSurat2"
                 app:cardCornerRadius="20dp"
                 android:layout_margin="10dp"
@@ -233,7 +233,7 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
             <TextView
                 android:text="Isi Surat"
                 android:layout_marginLeft="10dp"
@@ -242,7 +242,7 @@
                 android:layout_width="match_parent"
 
                 android:layout_height="wrap_content" />
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cvIsiSurat"
                 app:cardCornerRadius="20dp"
                 android:layout_margin="10dp"
@@ -291,7 +291,7 @@
 
                 </LinearLayout>
 
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
             <TextView
                 android:text="Detail Disposisi"
                 android:layout_marginLeft="10dp"
@@ -306,7 +306,7 @@
                 android:layout_margin="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
-            <android.support.v7.widget.CardView
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cvDetailDisposisi1"
                 app:cardCornerRadius="20dp"
                 android:layout_margin="10dp"
@@ -382,8 +382,8 @@
                             android:layout_height="wrap_content" />
                     </LinearLayout>
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
-            <android.support.v7.widget.CardView
+            </androidx.cardview.widget.CardView>
+            <androidx.cardview.widget.CardView
                 android:id="@+id/cvDetailDisposisi2"
                 app:cardCornerRadius="20dp"
                 android:layout_margin="10dp"
@@ -460,7 +460,7 @@
                     </LinearLayout>
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </androidx.cardview.widget.CardView>
             <!-- <TextView
                  android:text="Disposisi ini telah dibagikan oleh"
                  android:layout_gravity="center"

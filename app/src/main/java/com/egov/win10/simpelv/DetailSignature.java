@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Environment;
 import android.os.StrictMode;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
@@ -16,6 +15,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
@@ -25,6 +26,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.DownloadListener;
+import com.androidnetworking.interfaces.DownloadProgressListener;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.androidnetworking.interfaces.OkHttpResponseListener;
+import com.egov.win10.simpelv.TTD.PassPhrase;
 import com.sdsmdg.tastytoast.TastyToast;
 
 import org.json.JSONArray;
@@ -79,6 +88,7 @@ public class DetailSignature extends AppCompatActivity {
     String agenda_nomor_surat_keluar = "";
     String tgl_surat = "";
     String jenis_nota_dinas = "";
+    String file_esign = "";
 
     String username = "";
     String id_instansi = "";
@@ -128,6 +138,7 @@ public class DetailSignature extends AppCompatActivity {
         jenis_nota_dinas = getIntent().getStringExtra("jenis_nota_dinas");
         String tgl_surat_format = getIntent().getStringExtra("tanggal_surat_format");
         tembusan = getIntent().getStringExtra("nama_tembusan");
+        file_esign = getIntent().getStringExtra("path_file_esign");
 
         URL_TTD = URLL + id_surat;
 
@@ -197,6 +208,7 @@ public class DetailSignature extends AppCompatActivity {
                 //Toast.makeText(DetailSignature.this, "id_surat :"+id_surat+"\ntoken surat :"+token_surat+"\ncreate by :"+username+"\ncreate date :"+formattedDate+"\ncreate ip :"+ip+"\nmod by :"+username+"\nmod date :"+formattedDate+"\nmod ip :"+ip+"\n tgl surat masuk : "+formattedDate+"\nid instansi :"+id_instansi, Toast.LENGTH_SHORT).show();
                TandaTangan(id_surat, token_surat, username, formattedDate, ip, username, formattedDate, ip, formattedDate, id_instansi);
                 AmbilPenerimaTU();
+
                 //Toast.makeText(DetailSignature.this, "id_pengirim"+id_pengirim+"\nid_surat"+id_surat+"\ntgl_notifikasi"+formattedDate+"\ntoken_surat"+token_surat, Toast.LENGTH_SHORT).show();
 
 
@@ -422,6 +434,39 @@ public class DetailSignature extends AppCompatActivity {
         Volley.newRequestQueue(this).add(jsonArrayRequest);
     }
 
+    public void update_file_ttd(){
+
+        String upload_file_esign = Environment.getExternalStorageDirectory() + "/" + file_esign;
+
+        File file_upload_esign = new File(upload_file_esign);
+
+        AndroidNetworking.upload("http://simpel.pasamanbaratkab.go.id/api_android/simaya/update_pdf_ttd.php")
+                .addMultipartFile("file_pdf", file_upload_esign)
+                .addMultipartParameter("id_surat", id_surat)
+                .setTag("Registrasi")
+                .setPriority(Priority.HIGH)
+
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        if(response != null){
+                            Toast.makeText(DetailSignature.this, "Sukses", Toast.LENGTH_SHORT).show();
+                        }else{
+                            Toast.makeText(DetailSignature.this, "Gagal", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+
+                    }
+                });
+        Toast.makeText(this, ""+upload_file_esign, Toast.LENGTH_SHORT).show();
+
+
+    }
+
 
     public void TandaTangan(final String id_suratA, final String token_suratA, final String create_byA, final String create_dateA, final String create_ipA, final String mod_byA, final String mod_dateA, final String mod_ipA, final String tgl_surat_masukA, final String id_instansiA){
         progressDialog = new ProgressDialog(DetailSignature.this);
@@ -447,6 +492,7 @@ public class DetailSignature extends AppCompatActivity {
                         TastyToast.makeText(getApplicationContext(), "Sukses", Toast.LENGTH_LONG, TastyToast.SUCCESS).show();
                         NotifikasiWeb(id_surat, id_pengirim, token_surat, formattedDate);
                         AmbilPenerimaTU();
+                        update_file_ttd();
                         Intent in = new Intent(DetailSignature.this, MainActivity.class);
                         startActivity(in);
                         //Toasty.success(DetailSignature.this,
@@ -639,7 +685,7 @@ public class DetailSignature extends AppCompatActivity {
     public void openPdf(String filename){
         Log.w("IR", "TRYING TO RENDER: " + Environment.getExternalStorageDirectory().getAbsolutePath()+nama_surat);
         //  Toast.makeText(DetailDisposisiMasuk.this, ""+nama_surat, Toast.LENGTH_SHORT).show();
-        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), filename);// Here you declare your pdf path
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), file_esign);// Here you declare your pdf path
 
         Intent pdfViewIntent = new Intent(Intent.ACTION_VIEW);
         pdfViewIntent.setDataAndType(Uri.fromFile(file),"application/pdf");

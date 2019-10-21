@@ -27,6 +27,7 @@
 
     <string name="slide_4_title">GO GREEN OFFICE</string>
     <string name="slide_4_desc">Mengurangi Penggunaan Kertas Serta Tumpukan Arsip yang Tidak Digunakan</string>
+    <string name="title_activity_pass_phrase">PassPhrase</string>
 
 
 </resources>
