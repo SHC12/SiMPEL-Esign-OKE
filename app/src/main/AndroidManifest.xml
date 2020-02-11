@@ -16,8 +16,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".TU.BuatSuratMasuk"></activity>
+        <activity android:name=".TTD.PreviewTTE" />
+        <activity android:name=".TTD.PilihTTD" />
         <activity android:name=".SplashScreen">
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <action android:name="android.intent.action.VIEW" />
@@ -35,9 +37,7 @@
         <activity android:name=".DetailDisposisiMasuk" />
         <activity android:name=".DetailSuratMasuk" />
         <activity android:name=".BuatDisposisi" />
-        <activity android:name=".WelcomeActivity">
-
-        </activity>
+        <activity android:name=".WelcomeActivity" />
 
         <service android:name=".fcm.MyFirebaseInstanceIdService">
             <intent-filter>
@@ -52,7 +52,6 @@
 
         <activity android:name=".DetailDisposisiKeluar" />
         <activity android:name=".BuatDisposisiSM" />
-
         <activity android:name=".DetailKonsep" />
         <activity android:name=".DetailSignature" />
         <activity android:name=".list.ListSuratMasuk" />

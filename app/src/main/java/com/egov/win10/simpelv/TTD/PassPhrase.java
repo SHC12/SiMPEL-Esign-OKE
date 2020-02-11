@@ -101,6 +101,7 @@ public class PassPhrase extends AppCompatActivity {
     String Tag = "Signature";
     String URL_FILE = "";
     String nama_surat = "";
+    String jenisTTD;
 
     String nama_lengkap = "";
 
@@ -142,7 +143,7 @@ public class PassPhrase extends AppCompatActivity {
     private ProgressDialog progressDialog;
 
 
-    private String URL_SIGN_DOKUMEN = "http://103.124.89.212/api/sign/pdf?nik=";
+    private String URL_SIGN_DOKUMEN = "http://103.124.89.210/api/sign/pdf?nik=";
     String API_SIGN_DOKUMEN = "";
 
 
@@ -192,6 +193,7 @@ public class PassPhrase extends AppCompatActivity {
         jenis_nota_dinas = getIntent().getStringExtra("jenis_nota_dinas");
         tgl_surat_format = getIntent().getStringExtra("tanggal_surat_format");
         tembusan = getIntent().getStringExtra("nama_tembusan");
+        jenisTTD = getIntent().getStringExtra("jenisTTD");
 
         URL_TTD = URLL + id_surat;
 
@@ -216,6 +218,8 @@ public class PassPhrase extends AppCompatActivity {
             ft.commit();
         }
 */
+
+        
         editPassPhrase = (EditText) findViewById(R.id.editPassPhrase);
 
 
@@ -247,28 +251,41 @@ public class PassPhrase extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 passphrase = editPassPhrase.getText().toString();
-                API_SIGN_DOKUMEN = URL_SIGN_DOKUMEN + NIK +"&passphrase="+passphrase+"&tampilan=visible&halaman=terakhir&image=true&xAxis=593.363&width=330.28&height=450.120&yAxis=28.70";
-//                Toast.makeText(PassPhrase.this, ""+Environment.getExternalStorageDirectory() + "/" + nama_surat+"\n NIK : "+NIK+"\nAPI : "+API_SIGN_DOKUMEN, Toast.LENGTH_SHORT).show();
+                //   API_SIGN_DOKUMEN = URL_SIGN_DOKUMEN + NIK +"&passphrase="+passphrase+"&tampilan=visible&halaman=terakhir&image=true&xAxis=593.363&width=330.28&height=450.120&yAxis=28.70";
+                API_SIGN_DOKUMEN = URL_SIGN_DOKUMEN + NIK + "&passphrase=" + passphrase + "&tampilan=visible&halaman=terakhir&image=true&xAxis=533.363&width=330.28&height=450.120&yAxis=-112.70";
 
-                // Toast.makeText(PassPhrase.this, ""+URL_FILE_SIGN, Toast.LENGTH_SHORT).show();
-                //   Toast.makeText(PassPhrase.this, "IMG : "+Environment.getExternalStorageDirectory() + "/" + FILE_NAME, Toast.LENGTH_SHORT).show();
-
-
-                ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+             /*   ConnectivityManager cm = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
                 android.net.NetworkInfo wifi = cm
                         .getNetworkInfo(ConnectivityManager.TYPE_WIFI);
                 android.net.NetworkInfo datac = cm
                         .getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
                 if ((wifi != null & datac != null)
                         && (wifi.isConnected() | datac.isConnected())) {
-                    sign_in_pdf(API_SIGN_DOKUMEN);
+                   sign_in_pdf(API_SIGN_DOKUMEN);
+              //      Toast.makeText(PassPhrase.this, ""+API_SIGN_DOKUMEN, Toast.LENGTH_SHORT).show();
                     //connection is avlilable
                 }else{
                     //no connection
                     Toast toast = Toast.makeText(PassPhrase.this, "No Internet Connection",
                             Toast.LENGTH_LONG);
-                    toast.show();
-                }
+                    toast.show();*/
+                sign_in_pdf(API_SIGN_DOKUMEN);
+            }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
               // footer(pathFile);
                 // debug.setText(Environment.getExternalStorageDirectory() + "/" + nama_surat+"\n NIK : "+NIK+"\nAPI : "+API_SIGN_DOKUMEN);
@@ -279,8 +296,23 @@ public class PassPhrase extends AppCompatActivity {
 
 
 
-            }
+
         });
+
+/*        btnPassPhrase.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                passphrase = editPassPhrase.getText().toString();
+                API_SIGN_DOKUMEN = URL_SIGN_DOKUMEN + NIK +"&passphrase="+passphrase+"&tampilan=visible&halaman=terakhir&image=true&xAxis=593.363&width=330.28&height=450.120&yAxis=28.70";
+                //sign_in_pdf(API_SIGN_DOKUMEN);
+                Toast.makeText(PassPhrase.this, ""+API_SIGN_DOKUMEN, Toast.LENGTH_SHORT).show();
+
+
+
+            }
+        });*/
 
 
     }
@@ -342,7 +374,8 @@ public class PassPhrase extends AppCompatActivity {
         progressDialog.show();
 
         try {
-            pathFile2 = Environment.getExternalStorageDirectory()+"/esign_"+nama_surat+".pdf";
+            //pathFile2 = Environment.getExternalStorageDirectory()+"/esign_"+nama_surat+".pdf";
+            pathFile2 = Environment.getExternalStorageDirectory()+"/"+nama_surat;
             scanFile = new File(pathFile2);
             scanImageTTD = new File(pathImageTTD);
 
@@ -390,7 +423,7 @@ public class PassPhrase extends AppCompatActivity {
                         }else{
                             if (response.isSuccessful()) {
                                 Log.d("AA", "Headers :" + response.headers());
-                                aUrl = "http://103.124.89.212/api/sign/download/"+response.header("id_dokumen");
+                                aUrl = "http://103.124.89.210/api/sign/download/"+response.header("id_dokumen");
                                 final String nama_surat_sign = "esign_"+nama_surat;
                                 final String file_esign = Environment.getExternalStorageDirectory() + "/" + nama_surat_sign;
 
@@ -413,8 +446,7 @@ public class PassPhrase extends AppCompatActivity {
                                             @Override
                                             public void onDownloadComplete() {
                                                 // do anything after completion
-
-
+                                               // Intent intent = new Intent(PassPhrase.this, DetailSignature.class);
                                                 Intent intent = new Intent(PassPhrase.this, DetailSignature.class);
                                                 intent.putExtra("nama_tujuan", nama_tujuan);
                                                 intent.putExtra("nama_pengirim", nama_pengirim);
@@ -424,19 +456,18 @@ public class PassPhrase extends AppCompatActivity {
                                                 intent.putExtra("tanggal_surat", tgl_surat);
                                                 intent.putExtra("tanggal_surat_format", tgl_surat_format);
                                                 intent.putExtra("jenis_nota_dinas", jenis_nota_dinas);
-
-
+                                                intent.putExtra("jenisTTD", jenisTTD);
                                                 intent.putExtra("nama_tembusan", tembusan);
-
-
-
-
                                                 intent.putExtra("id_surat", id_surat);
                                                 intent.putExtra("id_instansi", id_instansi);
                                                 intent.putExtra("token_surat", token_surat);
+
+
                                                 intent.putExtra("path_file_esign", nama_surat_sign);
                                                 startActivity(intent);
                                                 progressDialog.dismiss();
+
+
 
                                             }
                                             @Override
@@ -455,11 +486,9 @@ public class PassPhrase extends AppCompatActivity {
 
                         /*if (response.isSuccessful()) {
                             Log.d("AA", "Headers :" + response.headers());
-                            aUrl = "http://103.124.89.212/api/sign/download/"+response.header("id_dokumen");
+                            aUrl = "http://103.124.89.210/api/sign/download/"+response.header("id_dokumen");
                             final String nama_surat_sign = "esign_"+nama_surat;
                             final String file_esign = Environment.getExternalStorageDirectory() + "/" + nama_surat_sign;
-
-
 
 
                             AndroidNetworking.download(aUrl, "/storage/emulated/0/", nama_surat_sign)
@@ -521,11 +550,11 @@ public class PassPhrase extends AppCompatActivity {
                     @Override
                     public void onError(ANError anError) {
                         Log.e("PassPhrase ", "Error : " + anError.getErrorDetail());
-                        Toast.makeText(PassPhrase.this, ""+anError.getErrorBody(), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(PassPhrase.this, "Error : "+anError.getErrorDetail()+"\nfile1 : "+scanFile+"\n file 2 :"+scanImageTTD, Toast.LENGTH_SHORT).show();
                     }
-                })
+                });
 
-             ;
+
      //   Toast.makeText(PassPhrase.this, "File : "+pathFile+"\nImage : "+pathImageTTD, Toast.LENGTH_SHORT).show();
 
     }
@@ -561,15 +590,15 @@ public class PassPhrase extends AppCompatActivity {
                             }
                         }).start();
 
-
                     }
-                    try {
+
+                   /* try {
                         footer2();
                     } catch (IOException e) {
                         e.printStackTrace();
                     } catch (DocumentException e) {
                         e.printStackTrace();
-                    }
+                    }*/
 
 
 
@@ -588,6 +617,8 @@ public class PassPhrase extends AppCompatActivity {
     }
     public void footer2() throws IOException, DocumentException {
         Document document = new Document();
+
+
 
         PdfCopy copy = new PdfCopy(document, new FileOutputStream(new File(Environment.getExternalStorageDirectory() + "/esign_"+ nama_surat+".pdf")));
         document.open();

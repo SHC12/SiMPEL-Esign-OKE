@@ -103,7 +103,7 @@ public class DetailSignature extends AppCompatActivity {
 
     private String URLLL = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/menu_penerima_tembusan.php?id_surat=";
     private String URL_TEMBUSAN = "";
-
+    String jenisTTD;
     private ProgressDialog progressDialog;
 
     TextView tvJudulSurat, tvNoAgendaSuratKeluar, tvNomorSurat, tvTglSurat, tvPengirim, tvTujuan, tvIsiSurat, tvJenisNota, tvTembusan;
@@ -127,6 +127,7 @@ public class DetailSignature extends AppCompatActivity {
 */
 
         id_surat = getIntent().getStringExtra("id_surat");
+        jenisTTD = getIntent().getStringExtra("jenisTTD");
         token_surat = getIntent().getStringExtra("token_surat");
         nama_tujuan = getIntent().getStringExtra("nama_tujuan");
         nama_pengirim = getIntent().getStringExtra("nama_pengirim");
@@ -189,7 +190,14 @@ public class DetailSignature extends AppCompatActivity {
         btnBukaSuratSignature.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openPdf(nama_surat);
+                //openPdf(nama_surat);
+                //Toast.makeText(DetailSignature.this, ""+jenisTTD, Toast.LENGTH_SHORT).show();
+
+                if(jenisTTD.equals("TTE")){
+                    openPdfTTE(nama_surat);
+                }else {
+                    openPdf(nama_surat);
+                }
             }
         });
 
@@ -221,6 +229,8 @@ public class DetailSignature extends AppCompatActivity {
         PenerimaTembusan();
         AmbilDataDetailKonsep();
         AmbilTujuan();
+
+
 
 
     }
@@ -462,7 +472,7 @@ public class DetailSignature extends AppCompatActivity {
 
                     }
                 });
-        Toast.makeText(this, ""+upload_file_esign, Toast.LENGTH_SHORT).show();
+     //   Toast.makeText(this, ""+upload_file_esign, Toast.LENGTH_SHORT).show();
 
 
     }
@@ -504,10 +514,8 @@ public class DetailSignature extends AppCompatActivity {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-
                     TastyToast.makeText(getApplicationContext(), "Error : "+e.toString(), Toast.LENGTH_LONG, TastyToast.ERROR).show();
                 }
-
 
             }
         }, new Response.ErrorListener() {
@@ -682,7 +690,7 @@ public class DetailSignature extends AppCompatActivity {
             Log.e("SYNC getUpdate", "security error", se);
         }
     }
-    public void openPdf(String filename){
+    public void openPdfTTE(String filename){
         Log.w("IR", "TRYING TO RENDER: " + Environment.getExternalStorageDirectory().getAbsolutePath()+nama_surat);
         //  Toast.makeText(DetailDisposisiMasuk.this, ""+nama_surat, Toast.LENGTH_SHORT).show();
         File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), file_esign);// Here you declare your pdf path
@@ -700,6 +708,27 @@ public class DetailSignature extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Anda Tidak Memiliki Aplikasi Pembaca Berkas Dokumen Doc", Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void openPdf(String filename){
+        Log.w("IR", "TRYING TO RENDER: " + Environment.getExternalStorageDirectory().getAbsolutePath()+nama_surat);
+        //  Toast.makeText(DetailDisposisiMasuk.this, ""+nama_surat, Toast.LENGTH_SHORT).show();
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(), filename);// Here you declare your pdf path
+
+        Intent pdfViewIntent = new Intent(Intent.ACTION_VIEW);
+        pdfViewIntent.setDataAndType(Uri.fromFile(file),"application/pdf");
+        pdfViewIntent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+        pdfViewIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+        pdfViewIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        Intent intent = Intent.createChooser(pdfViewIntent, "Open File");
+        try {
+            startActivity(intent);
+        } catch (ActivityNotFoundException e) {
+            Toast.makeText(getApplicationContext(), "Anda Tidak Memiliki Aplikasi Pembaca Berkas Dokumen Doc", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
 
     public void AmbilDataDetailKonsep(){

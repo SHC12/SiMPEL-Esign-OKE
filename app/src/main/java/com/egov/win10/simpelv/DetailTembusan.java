@@ -20,6 +20,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
+import com.github.clans.fab.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -46,6 +51,8 @@ public class DetailTembusan extends AppCompatActivity {
     String URL_FILE = "";
     String nama_surat = "";
 
+    FloatingActionButton fabVerif;
+
 
     String token_surat, no_surat_masuk, tgl_suratt, penerima, pengirimm, judul_suratt, nota_dinas, no_agenda, id_surat;
 
@@ -56,6 +63,9 @@ public class DetailTembusan extends AppCompatActivity {
     private ProgressDialog progressDialog;
 
 
+    File signed_file;
+
+    private String URL_VERIF_TTD = "http://103.124.89.210/api/sign/verify";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -85,7 +95,18 @@ public class DetailTembusan extends AppCompatActivity {
             }
         });
 
+        fabVerif = (FloatingActionButton) findViewById(R.id.fabVerifikasiTTD_TM);
+        fabVerif.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                progressDialog = new ProgressDialog(DetailTembusan.this);
+                progressDialog.setMessage("Mohon Tunggu....");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
 
+                VerifTTD();
+            }
+        });
 
         no_surat_masuk = getIntent().getStringExtra("nomor_surat");
         tgl_suratt = getIntent().getStringExtra("tgl_surat_format");
@@ -111,6 +132,51 @@ public class DetailTembusan extends AppCompatActivity {
 
         getPdf();
 
+
+    }
+    public void VerifTTD(){
+
+        signed_file = new File(Environment.getExternalStorageDirectory() + "/" + nama_surat);
+
+        AndroidNetworking.upload(URL_VERIF_TTD)
+                .addMultipartFile("signed_file", signed_file)
+                .setTag("Registrasi")
+                .setPriority(Priority.HIGH)
+                .addHeaders("Authorization", "Basic YnNyZTpzZWN1cmV0cmFuc2FjdGlvbnMhISE=")
+                .build()
+                .getAsJSONObject(new JSONObjectRequestListener() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        if (response != null) {
+                            try {
+                                progressDialog.dismiss();
+                                String responseString = response.get("notes").toString();
+
+
+                                if(responseString.equals("null")){
+                                    Toast.makeText(DetailTembusan.this, "Dokumen tidak dapat diverifikasi", Toast.LENGTH_SHORT).show();
+                                }else {
+
+                                    Toast.makeText(DetailTembusan.this, "" + responseString, Toast.LENGTH_SHORT).show();
+                                }
+
+
+
+
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                                Toast.makeText(DetailTembusan.this, "" + e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+                    @Override
+                    public void onError(ANError anError) {
+                        anError.printStackTrace();
+                        Toast.makeText(DetailTembusan.this, "ERROR : " + anError.getErrorDetail(), Toast.LENGTH_SHORT).show();
+                        Log.e("ERROR  : ", ""+anError.getErrorDetail());
+                    }
+                });
 
     }
 

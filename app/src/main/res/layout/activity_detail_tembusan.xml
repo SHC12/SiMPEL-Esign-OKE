@@ -275,6 +275,30 @@
 
 
     </ScrollView>
+    <com.github.clans.fab.FloatingActionMenu
+        xmlns:fab="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/social_floating_menu_TM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp"
+        >
+
+
+
+
+        <com.github.clans.fab.FloatingActionButton
+            android:id="@+id/fabVerifikasiTTD_TM"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_verified24dp"
+            fab:fab_label="Verifikasi Dokumen"
+            fab:fab_showAnimation="@anim/fab_scale_up"
+            fab:fab_size="normal" />
+    </com.github.clans.fab.FloatingActionMenu>
 
 
 </RelativeLayout>

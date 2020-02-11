@@ -167,7 +167,7 @@ public class Login extends AppCompatActivity {
                     String success = jsonObject.getString("success");
 //                    JSONArray jsonArray = jsonObject.getJSONArray("response");
                     if (success.equals("1")) {
-                        for (int i = 0; i < 10; i++) {
+                        for (int i = 0; i < 11; i++) {
 //                            JSONObject jsonObject1 = jsonObject.getJSONObject();
 
                             String nama_user = jsonObject.getString("nama_lengkap").trim();
@@ -180,6 +180,7 @@ public class Login extends AppCompatActivity {
                             String message = jsonObject.getString("message");
                             String id_kategori = jsonObject.getString("id_kategori").trim();
                             String id_jenjang_jabatan = jsonObject.getString("id_jenjang_jabatan");
+                            String id_user_pimpinan = jsonObject.getString("id_user_pimpinan").trim();
 
 
 
@@ -196,12 +197,17 @@ public class Login extends AppCompatActivity {
                             editor.putString("username", username);
                             editor.putString("name", nama_user);
                             editor.putString("message", message);
+                            editor.putString("id_user_pimpinan", id_user_pimpinan);
+
+
                             editor.commit();
 
 
                             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                             intent.putExtra("username", nama_user);
                             intent.putExtra("message", message);
+                           // intent.putExtra("id_pimpinan", id_user_pimpinan);
+
 
                             intent.putExtra("id_instansi", id_instansi);
                             intent.putExtra("id_user", id_user);

@@ -18,6 +18,7 @@ import android.util.Log;
 
 import com.egov.win10.simpelv.Login;
 import com.egov.win10.simpelv.R;
+import com.egov.win10.simpelv.SplashScreen;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 
@@ -66,7 +67,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
 
     private void sendNotificationAPI(RemoteMessage remoteMessage) {
-        Intent intent = new Intent(this, Login.class);
+        Intent intent = new Intent(this, SplashScreen.class);
         // intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_SINGLE_TOP);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         //  PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_ONE_SHOT);

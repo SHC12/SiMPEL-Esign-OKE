@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TU.BuatSuratMasuk">
+
+
+    <ImageView
+        android:id="@+id/simpel"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:background="@color/bg_screen5"
+        />
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/simpel"
+        android:background="#f7ecec"
+        />
+    <TextView
+        android:text="SiMPEL"
+        android:id="@+id/tvSimpel"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        android:textColor="#eef2f2"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="Dedi Kurniawan, A.Md.T"
+        android:gravity="left"
+        android:textSize="15dp"
+        android:layout_below="@id/tvSimpel"
+        android:textStyle="bold"
+        android:layout_margin="10dp"
+        android:textColor="@color/bg_screen5"
+        android:id="@+id/tvNamaBSM"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <ScrollView
+        android:id="@+id/scrollBuatSuratMasukManual"
+        android:layout_width="match_parent"
+        android:layout_below="@id/tvNamaBSM"
+        android:layout_height="wrap_content">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent"
+        android:layout_below="@id/tvNama"
+        >
+
+        <TextView
+            android:text="Buat Surat Masuk"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvInformasiSurat2"
+            app:cardCornerRadius="20dp"
+            app:cardBackgroundColor="@color/bg_screen5"
+            android:layout_margin="10dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="Tanggal Penerimaan : "
+                        android:textSize="12dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:layout_margin="10dp"
+                        android:id="@+id/BSM_tanggal_penerimaan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="Tanggal Surat : "
+                        android:textSize="12dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:layout_margin="10dp"
+                        android:id="@+id/BSM_tanggal_surat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textColor="@color/white"
+                        android:layout_marginTop="10dp"
+                        android:text="Nama : "
+                        android:textSize="12dp" />
+                    <EditText
+                        android:layout_margin="10dp"
+                        android:id="@+id/BSM_nama"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Instansi  :"
+                        android:textColor="@color/white"
+                        android:textSize="12dp" />
+
+                    <EditText
+                        android:layout_margin="10dp"
+                        android:id="@+id/BSM_instansi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Alamat Instansi  :"
+                        android:textColor="@color/white"
+                        android:textSize="12dp" />
+
+                    <EditText
+                        android:layout_margin="10dp"
+                        android:id="@+id/BSM_alamat_instansi"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvInformasiSurat"
+            app:cardCornerRadius="20dp"
+            app:cardBackgroundColor="@color/bg_screen5"
+            android:layout_margin="10dp"
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="Nomor Surat Masuk : "
+                        android:textSize="12dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:layout_margin="10dp"
+                        android:id="@+id/BSM_nomor_surat_masuk"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginTop="10dp"
+                        android:text="Nomor Agenda Masuk  :"
+                        android:textColor="@color/white"
+                        android:textSize="12dp" />
+
+                    <EditText
+                        android:layout_margin="10dp"
+                        android:id="@+id/BSM_nomor_agenda_masuk"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <TextView
+                        android:text="Perihal Surat : "
+                        android:textSize="12dp"
+                        android:layout_marginTop="10dp"
+                        android:textColor="@color/white"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <EditText
+                        android:layout_margin="10dp"
+                        android:id="@+id/BSM_perihal_surat"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+
+                    <TextView
+                        android:text="Jenis Naskah Dinas: "
+                        android:textSize="12dp" android:textColor="@color/white"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <fr.ganfra.materialspinner.MaterialSpinner
+                        android:id="@+id/spinnerJenisNaskahSuratManual"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="5dp"
+                        android:backgroundTint="@color/white"
+                        app:ms_arrowColor="#0000FF"
+
+
+                        app:ms_arrowSize="15dp"
+                        app:ms_floatingLabelColor="#b33e3e"
+                        app:ms_hint=" "
+                        app:ms_multiline="true" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+        <TextView
+            android:text="Upload Surat"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <TextView
+            android:text="Surat yang diupload harus format PDF"
+            android:layout_marginLeft="10dp"
+
+            android:textSize="15dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="20dp"
+            android:layout_marginTop="10dp"
+            >
+
+            <Button
+                android:id="@+id/btn_BSM_pilih_surat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/bg_btn_primary"
+                android:text="Pilih Surat"
+                android:textColor="@color/white" />
+
+            <TextView
+               android:id="@+id/BSM_file_pdf"
+                android:layout_marginLeft="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+
+        </LinearLayout>
+
+
+
+
+        <Button
+            android:id="@+id/btn_BSM_kirim_surat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_margin="5dp"
+
+            android:background="@drawable/bg_btn_primary"
+            android:text="Kirim Surat"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+    </ScrollView>
+
+</RelativeLayout>

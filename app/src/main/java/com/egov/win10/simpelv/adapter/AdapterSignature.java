@@ -14,7 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.egov.win10.simpelv.DetailSignature;
 import com.egov.win10.simpelv.R;
-import com.egov.win10.simpelv.TTD.PassPhrase;
+import com.egov.win10.simpelv.TTD.PilihTTD;
 import com.egov.win10.simpelv.data.DataSignature;
 
 import java.util.ArrayList;
@@ -149,7 +149,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
                     Intent intent = new Intent();
                     switch (getAdapterPosition()) {
                         case 0:
-                            intent = new Intent(context, PassPhrase.class);
+                            intent = new Intent(context, PilihTTD.class);
 
 
 
@@ -184,7 +184,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 1:
-                            intent = new Intent(context, PassPhrase.class);
+                            intent = new Intent(context, PilihTTD.class);
 
 
 
@@ -220,7 +220,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 2:
-                            intent = new Intent(context, PassPhrase.class);
+                            intent = new Intent(context, PilihTTD.class);
 
 
 
@@ -258,7 +258,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 3:
-                            intent = new Intent(context, PassPhrase.class);
+                            intent = new Intent(context, PilihTTD.class);
 
 
 
@@ -291,7 +291,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 4:
-                            intent = new Intent(context, PassPhrase.class);
+                            intent = new Intent(context, PilihTTD.class);
 
 
 
@@ -324,7 +324,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 5:
-                            intent = new Intent(context, PassPhrase.class);
+                            intent = new Intent(context, PilihTTD.class);
 
 
 
@@ -358,7 +358,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 6:
-                            intent = new Intent(context, PassPhrase.class);
+                            intent = new Intent(context, PilihTTD.class);
 
 
 
@@ -392,7 +392,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 7:
-                            intent = new Intent(context, PassPhrase.class);
+                            intent = new Intent(context, PilihTTD.class);
 
 
 
@@ -428,7 +428,7 @@ public class AdapterSignature extends RecyclerView.Adapter<AdapterSignature.View
 
                             break;
                         case 8:
-                            intent = new Intent(context, PassPhrase.class);
+                            intent = new Intent(context, PilihTTD.class);
 
 
 

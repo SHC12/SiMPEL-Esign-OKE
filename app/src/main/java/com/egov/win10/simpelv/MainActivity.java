@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +31,7 @@ import com.androidnetworking.interfaces.DownloadProgressListener;
 import com.androidnetworking.interfaces.JSONArrayRequestListener;
 import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import com.egov.win10.simpelv.TTD.DaftarTTD;
+import com.egov.win10.simpelv.TU.BuatSuratMasuk;
 import com.egov.win10.simpelv.TU.ListAgendaKeluar;
 import com.egov.win10.simpelv.TU.ListAgendaMasuk;
 import com.egov.win10.simpelv.TU.ListSuratMasukTU;
@@ -83,6 +85,7 @@ public class MainActivity extends AppCompatActivity {
     CardView cvKonsep;
     CardView cvTandaTangan;
     CardView cvDaftarTTD;
+    CardView cvBuatSUratMasukTU;
 
     String id_groups;
     String id_kategori;
@@ -106,30 +109,32 @@ public class MainActivity extends AppCompatActivity {
     String get_nik;
     int stat_code;
 
+  //  ImageView logout;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-
-
-
-
-
-
-
-
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = settings.edit();
         editor.putString("nik", nik);
-        SharedPreferences mSettings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
+        final SharedPreferences mSettings = getSharedPreferences("Settings", Context.MODE_PRIVATE);
         String cookieName = settings.getString("message", "default");
         id_kategori = settings.getString("id_kategori", "default");
         id_groups = settings.getString("id_groups", "default");
         id_user = settings.getString("id_user", "default");
+        String ip = settings.getString("id_user_pimpinan", "default");
 
         URL_NIK  = url_get_nik + id_user;
+
+
+
+
+
+
+
 
 
         URL_FILE_SIGN = "http://simpel.pasamanbaratkab.go.id/upload/img_sign/"+id_user+".jpg";
@@ -176,11 +181,19 @@ public class MainActivity extends AppCompatActivity {
                     startActivity(in);
                 }
             });
+
+            cvBuatSUratMasukTU = (CardView) findViewById(R.id.BuatSuratMasukTU);
+            cvBuatSUratMasukTU.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent in = new Intent(MainActivity.this, BuatSuratMasuk.class);
+                    startActivity(in);
+                }
+            });
             id_user = settings.getString("id_user", "");
 
 
-
-
+           // Toast.makeText(this, ""+ip, Toast.LENGTH_SHORT).show();
             getToken();
 
 
@@ -298,6 +311,31 @@ public class MainActivity extends AppCompatActivity {
 
 
 
+    }
+
+
+    public void logout(View v){
+        SharedPreferences sharedPrefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.clear();
+        editor.commit();
+
+        //Toast.makeText(this, "LOGOUT", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(MainActivity.this, Login.class);
+        startActivity(intent);
+    }
+
+    public void TUlogout(View v){
+        SharedPreferences sharedPrefs = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPrefs.edit();
+        editor.clear();
+        editor.commit();
+
+        //Toast.makeText(this, "LOGOUT", Toast.LENGTH_SHORT).show();
+
+        Intent intent = new Intent(MainActivity.this, Login.class);
+        startActivity(intent);
     }
 
     public void DownloadFilesIMG() {

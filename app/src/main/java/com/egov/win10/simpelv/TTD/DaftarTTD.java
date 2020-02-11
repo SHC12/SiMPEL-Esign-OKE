@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,7 @@ import com.nbsp.materialfilepicker.ui.FilePickerActivity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.io.File;
 import java.io.IOException;
@@ -59,10 +61,14 @@ import retrofit2.http.QueryMap;
 
 public class DaftarTTD extends AppCompatActivity {
 
+
+
+
     EditText editNik, editNama, editEmail, editNoTelepon, editNip, editJabatan, editUnitKerja;
 
     String nik, nama, email, noTelepon, nip, kota, provinsi, jabatan, unitkerja;
 
+    TextView namaTTD;
 
     public static final String PREFS_NAME = "MyPrefsFile";
 
@@ -82,6 +88,7 @@ public class DaftarTTD extends AppCompatActivity {
     String b = "http://simpel.pasamanbaratkab.go.id/upload/a.jpg";
     String c = "http://simpel.pasamanbaratkab.go.id/upload/c.pdf";
 
+    String nama_lengkap;
 
 
     private String URl_ESIGN = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/esign.php";
@@ -89,9 +96,9 @@ public class DaftarTTD extends AppCompatActivity {
 
 
 
-    private String BASE_PATH = "http://103.124.89.212/api/user";
-    private String URL_DAFTAR_TTD = "http://103.124.89.212/api/user/registrasi?nik=";
-    //private String API_DAFTAR_TTD = "http://103.124.89.212/api/user/registrasi?nik=3434&nama=Nani Fajriani&email=nanifajriani316@yahoo.com&nomor_telepon=082386437418&kota=Pasaman Barat&provinsi=Sumatera Barat&nip=19790221 199711 2 001&jabatan=Kepala Bidang E-Goverment&unit_kerja=Diskominfo Pasaman Barat";
+    private String BASE_PATH = "http://103.124.89.210/api/user";
+    private String URL_DAFTAR_TTD = "http://103.124.89.210/api/user/registrasi?nik=";
+    //private String API_DAFTAR_TTD = "http://103.124.89.210/api/user/registrasi?nik=3434&nama=Nani Fajriani&email=nanifajriani316@yahoo.com&nomor_telepon=082386437418&kota=Pasaman Barat&provinsi=Sumatera Barat&nip=19790221 199711 2 001&jabatan=Kepala Bidang E-Goverment&unit_kerja=Diskominfo Pasaman Barat";
     private String API_DAFTAR_TTD = "";
 
     File scanKTP;
@@ -101,6 +108,7 @@ public class DaftarTTD extends AppCompatActivity {
     // private Uri filepath;
 
     final int PICK_IMAGE_REQUEST = 234;
+
 
 
     private static final int REQUEST_CODE_RESOLUTION = 3;
@@ -118,6 +126,7 @@ public class DaftarTTD extends AppCompatActivity {
 
         SharedPreferences settings = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         id_user = settings.getString("id_user", "default");
+        nama_lengkap = settings.getString("nama_lengkap", "default");
         String stat_code2 = settings.getString("nik", "null");
 
 
@@ -133,9 +142,10 @@ public class DaftarTTD extends AppCompatActivity {
 
 
 
+
+            namaTTD = (TextView) findViewById(R.id.tvNamaTTD);
+            namaTTD.setText(nama_lengkap);
             nama_instansi = settings.getString("nama_instansi", "default");
-
-
             editNik = (EditText) findViewById(R.id.daftarNikTTD);
             editNama = (EditText) findViewById(R.id.daftarNamaTTD);
             editEmail = (EditText) findViewById(R.id.daftarEmailTTD);
@@ -153,7 +163,6 @@ public class DaftarTTD extends AppCompatActivity {
             btnFileTTD = (Button) findViewById(R.id.btnImageTTD);
 
 
-
             btnFileKTP.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -161,11 +170,9 @@ public class DaftarTTD extends AppCompatActivity {
                             .withActivity(DaftarTTD.this)
                             .withRequestCode(1000)
                             .withHiddenFiles(false)
-
                             .start();
                 }
             });
-
             btnFileSK.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -177,7 +184,6 @@ public class DaftarTTD extends AppCompatActivity {
                             .start();
                 }
             });
-
             btnFileTTD.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -189,11 +195,9 @@ public class DaftarTTD extends AppCompatActivity {
                             .start();
                 }
             });
-
             btnDaftar.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
 
                     nik = editNik.getText().toString();
                     nama = editNama.getText().toString();
@@ -371,10 +375,7 @@ public class DaftarTTD extends AppCompatActivity {
             Bitmap myBitmap = BitmapFactory.decodeFile(filepath);
 
             ssKtp.setImageBitmap(myBitmap);
-
-            // Log.d(TAG, String.valueOf(bitmap));
-
-
+            // Log.d(TAG, String.valueOf(bitmap))
 
         }
         if(requestCode == 1100 && resultCode == RESULT_OK){
@@ -392,6 +393,11 @@ public class DaftarTTD extends AppCompatActivity {
 
         }
     }
+
+
+
+
+
 
 
     public void auth(final String ktp, final String sk, final String ttd) {
@@ -475,7 +481,7 @@ public class DaftarTTD extends AppCompatActivity {
 
     public void auth2() {
 
-        String URL = "http://103.124.89.212/api/user/registrasi?nik=137111610279000&nama=Nani Fajriani&email=nanifajriani316@yahoo.com&nomor_telepon=082386437418&kota=Pasaman Barat&provinsi=Sumatera Barat&nip=19790221 199711 2 001&jabatan=Kepala Bidang E-Goverment&unit_kerja=Diskominfo Pasaman Barat";
+        String URL = "http://103.124.89.210/api/user/registrasi?nik=137111610279000&nama=Nani Fajriani&email=nanifajriani316@yahoo.com&nomor_telepon=082386437418&kota=Pasaman Barat&provinsi=Sumatera Barat&nip=19790221 199711 2 001&jabatan=Kepala Bidang E-Goverment&unit_kerja=Diskominfo Pasaman Barat";
 
 
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.POST, URL, null, new Response.Listener<JSONObject>() {

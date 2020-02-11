@@ -53,7 +53,7 @@ public class DetailSuratMasuk extends AppCompatActivity {
     public static final String PREFS_NAME = "MyPrefsFile";
 
     private String Url = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/model_detail_surat_masuk.php?token_surat=";
-    private String URL_VERIF_TTD = "http://103.124.89.212/api/sign/verify";
+    private String URL_VERIF_TTD = "http://103.124.89.210/api/sign/verify";
     private String api_pdf_surat_masuk = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/get_file_pdf_disposisi_masuk.php?id_surat=";
     private String READ_SM = "http://simpel.pasamanbaratkab.go.id/api_android/simaya/update_read_surat_masuk.php?id_surat=";
     public String url_pdf_surat_masuk = "";
@@ -153,6 +153,10 @@ public class DetailSuratMasuk extends AppCompatActivity {
             public void onClick(View view) {
 
                 //Toast.makeText(DetailSuratMasuk.this, ""+Environment.getExternalStorageDirectory() + "/" + nama_surat, Toast.LENGTH_SHORT).show();
+                progressDialog = new ProgressDialog(DetailSuratMasuk.this);
+                progressDialog.setMessage("Mohon Tunggu....");
+                progressDialog.setCancelable(false);
+                progressDialog.show();
 
                 VerifTTD();
 
@@ -255,12 +259,14 @@ public class DetailSuratMasuk extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
                         if (response != null) {
                             try {
+                                progressDialog.dismiss();
                                 String responseString = response.get("notes").toString();
 
 
                                 if(responseString.equals("null")){
                                     Toast.makeText(DetailSuratMasuk.this, "Dokumen tidak dapat diverifikasi", Toast.LENGTH_SHORT).show();
                                 }else {
+
                                     Toast.makeText(DetailSuratMasuk.this, "" + responseString, Toast.LENGTH_SHORT).show();
                                 }
 

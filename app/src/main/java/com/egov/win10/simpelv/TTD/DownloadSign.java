@@ -32,7 +32,7 @@ public class DownloadSign extends AppCompatActivity {
 
     TextView tvId_dokumen;
 
-    private String URL_FILE_PDF = "http://103.124.89.212/api/sign/download/";
+    private String URL_FILE_PDF = "http://103.124.89.210/api/sign/download/";
 
 
     String URL_PDF = "";
